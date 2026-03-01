@@ -98,7 +98,6 @@
             border-color: #f57d00;
             color: white;
         }
-        /* Facebook button hover */
         .social-links a[href*="facebook"]:hover {
             background: #1877f2;
             border-color: #1877f2;
@@ -510,7 +509,7 @@
 </head>
 <body>
     <div class="container">
-        <!-- header with new Facebook link -->
+        <!-- header with Facebook link -->
         <div class="header">
             <div class="logo-area">
                 <h1>Kevin & Cat Travel</h1>
@@ -523,7 +522,6 @@
                 <a href="https://www.tiktok.com/@kevinandcatlive" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
                 <a href="mailto:Kevinandcatlive@gmail.com"><i class="fas fa-envelope"></i> Business</a>
                 <a href="https://kevinandcattravel.blogspot.com/" target="_blank"><i class="fab fa-blogger"></i> Blog</a>
-                <!-- new Facebook button with cute icon -->
                 <a href="https://www.facebook.com/profile.php?id=100068952835898" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
             </div>
         </div>
@@ -557,7 +555,7 @@
         <div class="section-title"><i class="fas fa-snowflake"></i> Quebec City Spa <span class="playlist-badge">Full Playlist</span></div>
         <div class="video-grid" id="quebec-videos"></div>
 
-        <!-- 4. KOREA -->
+        <!-- 4. KOREA (only playlist) -->
         <div class="section-title"><i class="fas fa-landmark"></i> Korea <span class="playlist-badge">Full Playlist</span></div>
         <div class="video-grid" id="korea-videos"></div>
 
@@ -565,15 +563,15 @@
         <div class="section-title"><i class="fas fa-city"></i> Montreal Adventures <span class="playlist-badge">Full Playlist</span></div>
         <div class="video-grid" id="montreal-videos"></div>
 
-        <!-- 6. JAPAN -->
+        <!-- 6. JAPAN (only playlist) -->
         <div class="section-title"><i class="fas fa-torii-gate"></i> Japan <span class="playlist-badge">Full Playlist</span></div>
         <div class="video-grid" id="japan-videos"></div>
 
-        <!-- 7. THAILAND — now with your playlist! -->
+        <!-- 7. THAILAND -->
         <div class="section-title"><i class="fas fa-umbrella-beach"></i> Thailand <span class="playlist-badge">Full Playlist</span></div>
         <div class="video-grid" id="thailand-videos"></div>
 
-        <!-- 8. LATEST ADVENTURES (now auto‑updated with the most recent releases from your channel) -->
+        <!-- 8. LATEST ADVENTURES (now shows 8 videos) -->
         <div class="section-title"><i class="fas fa-clock"></i> Latest Adventures</div>
         <div class="video-grid" id="recent-videos"></div>
 
@@ -649,7 +647,7 @@
             </div>
         </div>
 
-        <!-- BLOG SECTION – now with crisp, high‑resolution images (or beautiful stock fallback) -->
+        <!-- BLOG SECTION – now with generic stock thumbnails -->
         <div class="section-title"><i class="fas fa-blog" style="color: #f4b400;"></i> 📝 Latest from Our Blog</div>
         <div class="blog-grid" id="blog-posts"></div>
         <div class="blog-cta">
@@ -709,7 +707,7 @@
             }
         ];
 
-        // keyword mapping for RSS categorization (for destination sections)
+        // keyword mapping for RSS categorization
         const DEST_KEYWORDS = {
             thailand: ['thailand', 'bangkok', 'phuket', 'chiang mai', 'iconsiam', 'thai'],
             japan: ['japan', 'tokyo', 'osaka', 'kyoto', 'sushi', 'ramen', 'japanese'],
@@ -760,42 +758,10 @@
             }
         }
 
-        // ---------- fetch blog posts from Blogger RSS with high‑res images + stock fallback ----------
+        // ---------- fetch blog posts but always use the same stock image ----------
+        const STOCK_BLOG_IMAGE = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=338&fit=crop&auto=format"; // tropical beach
+
         async function fetchBlogPosts() {
-            // Stock image fallback (beautiful travel photo from Unsplash, permanent ID)
-            const STOCK_FALLBACK = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=338&fit=crop&auto=format"; // tropical beach
-
-            const fallbackPosts = [
-                {
-                    title: "The Top 10 Best Places to Eat in Playa del Carmen",
-                    description: "Chez Waffles, Choripan, Mu Burgerhouse, Birria de la 30, Tropical Tacos and more – full guide with timestamps.",
-                    url: "https://kevinandcattravel.blogspot.com/2025/09/the-top-10-best-places-to-eat-in-playa.html",
-                    date: "Sep 2025",
-                    image: STOCK_FALLBACK
-                },
-                {
-                    title: "I Tried The McDonald's McVeggie Burger But is it Vegetarian?",
-                    description: "Canada's new vegetarian burger – cooked in same fryer as fish? We review the McVeggie and Spicy Habanero.",
-                    url: "https://kevinandcattravel.blogspot.com/2025/09/i-tried-mcdonalds-mcveggie-burger-but.html",
-                    date: "Sep 2025",
-                    image: STOCK_FALLBACK
-                },
-                {
-                    title: "I Tried Another Worst Reviewed Buffet in Montreal",
-                    description: "Buffet des Continents: 'where taste buds go to die'? We tried the $40 international buffet so you don't have to.",
-                    url: "https://kevinandcattravel.blogspot.com/2025/09/i-tried-another-worst-reviewed-buffet.html",
-                    date: "Sep 2025",
-                    image: STOCK_FALLBACK
-                },
-                {
-                    title: "A Day Trip Montreal Granby Zoo Guide! (Waterpark, Zoo, Amusement Park)",
-                    description: "Complete guide to Zoo de Granby – wildlife, water park, and amusement park. Perfect family day trip from Montreal.",
-                    url: "https://kevinandcattravel.blogspot.com/2025/09/a-day-trip-montreal-granby-zoo-guide.html",
-                    date: "Sep 2025",
-                    image: STOCK_FALLBACK
-                }
-            ];
-
             const feedUrl = 'https://kevinandcattravel.blogspot.com/feeds/posts/default?alt=rss';
             try {
                 const response = await fetch(PROXY_URL + encodeURIComponent(feedUrl));
@@ -811,41 +777,7 @@
                     const description = item.querySelector('description')?.textContent || '';
                     const pubDate = item.querySelector('pubDate')?.textContent || '';
                     
-                    // ---- Extract high‑quality image with aggressive size upgrade ----
-                    let imageUrl = null;
-                    
-                    // 1. Try to find the first <img> inside the description
-                    const imgRegex = /<img[^>]+src=["']([^"']+)["']/i;
-                    const imgMatch = description.match(imgRegex);
-                    if (imgMatch && imgMatch[1]) {
-                        let url = imgMatch[1];
-                        // Upgrade Blogger thumbnail patterns to highest resolution
-                        url = url.replace(/\/s72-c\//, '/s1600/')
-                                 .replace(/\/s72\-w\d+\-h\d+\//, '/s1600/')
-                                 .replace(/=s72-c/, '=s1600')
-                                 .replace(/w72-h72/, 'w1600-h1600')
-                                 .replace(/\/w\d+-h\d+-/, '/w1600-h1600-');
-                        // Ensure https
-                        if (url.startsWith('http://')) url = url.replace('http://', 'https://');
-                        imageUrl = url;
-                    }
-                    
-                    // 2. Fallback to media:thumbnail
-                    if (!imageUrl) {
-                        const mediaThumbnail = item.getElementsByTagName('media:thumbnail')[0] || item.getElementsByTagName('thumbnail')[0];
-                        if (mediaThumbnail && mediaThumbnail.getAttribute('url')) {
-                            let url = mediaThumbnail.getAttribute('url');
-                            url = url.replace(/\/s72-c\//, '/s1600/').replace(/=s72-c/, '=s1600');
-                            imageUrl = url;
-                        }
-                    }
-                    
-                    // If still no image, use the beautiful stock fallback
-                    if (!imageUrl) {
-                        imageUrl = STOCK_FALLBACK;
-                    }
-                    
-                    // Strip HTML tags from description and truncate
+                    // Strip HTML tags and truncate
                     const plainDesc = description.replace(/<[^>]*>/g, '').substring(0, 120) + '…';
                     
                     // Format date
@@ -862,18 +794,48 @@
                         url: link,
                         description: plainDesc,
                         date: formattedDate,
-                        image: imageUrl
+                        image: STOCK_BLOG_IMAGE   // <-- always use the same stock image
                     });
                 });
                 
                 return posts.slice(0, 4); // latest 4 posts
             } catch (error) {
                 console.error('Failed to fetch blog posts, using fallback:', error);
-                return fallbackPosts;
+                // Fallback posts with stock image
+                return [
+                    {
+                        title: "The Top 10 Best Places to Eat in Playa del Carmen",
+                        description: "Chez Waffles, Choripan, Mu Burgerhouse, Birria de la 30, Tropical Tacos and more – full guide with timestamps.",
+                        url: "https://kevinandcattravel.blogspot.com/2025/09/the-top-10-best-places-to-eat-in-playa.html",
+                        date: "Sep 2025",
+                        image: STOCK_BLOG_IMAGE
+                    },
+                    {
+                        title: "I Tried The McDonald's McVeggie Burger But is it Vegetarian?",
+                        description: "Canada's new vegetarian burger – cooked in same fryer as fish? We review the McVeggie and Spicy Habanero.",
+                        url: "https://kevinandcattravel.blogspot.com/2025/09/i-tried-mcdonalds-mcveggie-burger-but.html",
+                        date: "Sep 2025",
+                        image: STOCK_BLOG_IMAGE
+                    },
+                    {
+                        title: "I Tried Another Worst Reviewed Buffet in Montreal",
+                        description: "Buffet des Continents: 'where taste buds go to die'? We tried the $40 international buffet so you don't have to.",
+                        url: "https://kevinandcattravel.blogspot.com/2025/09/i-tried-another-worst-reviewed-buffet.html",
+                        date: "Sep 2025",
+                        image: STOCK_BLOG_IMAGE
+                    },
+                    {
+                        title: "A Day Trip Montreal Granby Zoo Guide! (Waterpark, Zoo, Amusement Park)",
+                        description: "Complete guide to Zoo de Granby – wildlife, water park, and amusement park. Perfect family day trip from Montreal.",
+                        url: "https://kevinandcattravel.blogspot.com/2025/09/a-day-trip-montreal-granby-zoo-guide.html",
+                        date: "Sep 2025",
+                        image: STOCK_BLOG_IMAGE
+                    }
+                ];
             }
         }
 
-        // ---------- render blog posts with high‑res images (now always a crisp photo) ----------
+        // ---------- render blog posts with stock image ----------
         async function renderBlogPosts() {
             const container = document.getElementById('blog-posts');
             if (!container) return;
@@ -885,7 +847,7 @@
                 html += `
                     <a href="${post.url}" class="blog-card" target="_blank">
                         <div class="thumbnail">
-                            <img src="${post.image}" alt="${post.title}" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=338&fit=crop&auto=format';">
+                            <img src="${post.image}" alt="${post.title}" loading="lazy">
                         </div>
                         <div class="card-details">
                             <h4>${post.title} <span class="blog-badge">Blog</span></h4>
@@ -948,7 +910,7 @@
                 korea: [],
                 mexico: [],
                 quebec: [],
-                recent: []   // we'll no longer use this for 'latest adventures'
+                recent: []   // we'll not use this for latest
             };
             
             videos.forEach(video => {
@@ -963,7 +925,7 @@
                     }
                 }
                 if (!matched) {
-                    categorized.recent.push(video); // keep for potential other uses, but not for latest section
+                    categorized.recent.push(video);
                 }
             });
             
@@ -971,7 +933,7 @@
         }
 
         // ---------- render a grid (overwrites) ----------
-        function renderGrid(containerId, videos, limit = 6) {
+        function renderGrid(containerId, videos, limit = 8) {   // default limit changed to 8
             const container = document.getElementById(containerId);
             if (!container) return;
             
@@ -1006,6 +968,11 @@
         function appendVideos(containerId, videos, maxToAdd = 3) {
             const container = document.getElementById(containerId);
             if (!container || !videos || videos.length === 0) return;
+
+            // Skip appending for Japan and Korea sections (only playlist)
+            if (containerId === 'japan-videos' || containerId === 'korea-videos') {
+                return;
+            }
 
             // random selection from the destination-specific videos
             const shuffled = [...videos].sort(() => 0.5 - Math.random());
@@ -1063,25 +1030,26 @@
 
         // ---------- main ----------
         (async function() {
-            // 1. render blog posts (high-res images + stock fallback)
+            // 1. render blog posts (all with the same stock image)
             await renderBlogPosts();
 
-            // 2. render all playlist cards (including Thailand)
+            // 2. render all playlist cards (including Thailand, Japan, Korea)
             await renderAllPlaylistSections();
 
-            // 3. fetch & categorize RSS videos (videos array is sorted newest first)
+            // 3. fetch & categorize RSS videos
             const videos = await fetchRSSVideos();
             const categorized = categorizeVideos(videos);
 
             // 4. for destination sections, APPEND up to 3 fresh RSS videos after the playlist card
+            //    (but not for Japan and Korea – we skip them inside appendVideos)
             appendVideos('thailand-videos', categorized.thailand, 3);
-            appendVideos('japan-videos', categorized.japan, 3);
-            appendVideos('korea-videos', categorized.korea, 3);
+            appendVideos('japan-videos', categorized.japan, 3);      // will be skipped
+            appendVideos('korea-videos', categorized.korea, 3);       // will be skipped
             appendVideos('mexico-videos', categorized.mexico, 3);
             appendVideos('quebec-videos', categorized.quebec, 3);
 
-            // 5. 'Latest Adventures' now shows the 6 most recent videos from the whole channel (excluding Shorts)
-            renderGrid('recent-videos', videos, 6);
+            // 5. 'Latest Adventures' now shows 8 most recent videos
+            renderGrid('recent-videos', videos, 8);
 
             // ========== BUILD VIDEO LIST FOR SCHEMA ==========
             const allVideoIds = new Set();
