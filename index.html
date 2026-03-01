@@ -93,11 +93,15 @@
             background: #c71610;
             border-color: #c71610;
         }
-        /* new blog button hover – Blogger orange */
         .social-links a[href*="blogspot"]:hover {
             background: #f57d00;
             border-color: #f57d00;
             color: white;
+        }
+        /* Facebook button hover */
+        .social-links a[href*="facebook"]:hover {
+            background: #1877f2;
+            border-color: #1877f2;
         }
         .featured-grid {
             display: grid;
@@ -506,7 +510,7 @@
 </head>
 <body>
     <div class="container">
-        <!-- header -->
+        <!-- header with new Facebook link -->
         <div class="header">
             <div class="logo-area">
                 <h1>Kevin & Cat Travel</h1>
@@ -518,8 +522,9 @@
                 <a href="https://www.instagram.com/kevinandcattravel" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
                 <a href="https://www.tiktok.com/@kevinandcatlive" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
                 <a href="mailto:Kevinandcatlive@gmail.com"><i class="fas fa-envelope"></i> Business</a>
-                <!-- New blog link added here with Blogger icon -->
                 <a href="https://kevinandcattravel.blogspot.com/" target="_blank"><i class="fab fa-blogger"></i> Blog</a>
+                <!-- new Facebook button with cute icon -->
+                <a href="https://www.facebook.com/profile.php?id=100068952835898" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
             </div>
         </div>
 
@@ -568,7 +573,7 @@
         <div class="section-title"><i class="fas fa-umbrella-beach"></i> Thailand <span class="playlist-badge">Full Playlist</span></div>
         <div class="video-grid" id="thailand-videos"></div>
 
-        <!-- 8. LATEST ADVENTURES (RSS feed) - now auto-updated with newest long‑form videos -->
+        <!-- 8. LATEST ADVENTURES (now auto‑updated with the most recent releases from your channel) -->
         <div class="section-title"><i class="fas fa-clock"></i> Latest Adventures</div>
         <div class="video-grid" id="recent-videos"></div>
 
@@ -644,7 +649,7 @@
             </div>
         </div>
 
-        <!-- BLOG SECTION – high‑res images -->
+        <!-- BLOG SECTION – now with crisp, high‑resolution images (or beautiful stock fallback) -->
         <div class="section-title"><i class="fas fa-blog" style="color: #f4b400;"></i> 📝 Latest from Our Blog</div>
         <div class="blog-grid" id="blog-posts"></div>
         <div class="blog-cta">
@@ -704,7 +709,7 @@
             }
         ];
 
-        // keyword mapping for RSS categorization
+        // keyword mapping for RSS categorization (for destination sections)
         const DEST_KEYWORDS = {
             thailand: ['thailand', 'bangkok', 'phuket', 'chiang mai', 'iconsiam', 'thai'],
             japan: ['japan', 'tokyo', 'osaka', 'kyoto', 'sushi', 'ramen', 'japanese'],
@@ -755,36 +760,39 @@
             }
         }
 
-        // ---------- fetch blog posts from Blogger RSS with high‑res images ----------
+        // ---------- fetch blog posts from Blogger RSS with high‑res images + stock fallback ----------
         async function fetchBlogPosts() {
+            // Stock image fallback (beautiful travel photo from Unsplash, permanent ID)
+            const STOCK_FALLBACK = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=338&fit=crop&auto=format"; // tropical beach
+
             const fallbackPosts = [
                 {
                     title: "The Top 10 Best Places to Eat in Playa del Carmen",
                     description: "Chez Waffles, Choripan, Mu Burgerhouse, Birria de la 30, Tropical Tacos and more – full guide with timestamps.",
                     url: "https://kevinandcattravel.blogspot.com/2025/09/the-top-10-best-places-to-eat-in-playa.html",
                     date: "Sep 2025",
-                    image: null
+                    image: STOCK_FALLBACK
                 },
                 {
                     title: "I Tried The McDonald's McVeggie Burger But is it Vegetarian?",
                     description: "Canada's new vegetarian burger – cooked in same fryer as fish? We review the McVeggie and Spicy Habanero.",
                     url: "https://kevinandcattravel.blogspot.com/2025/09/i-tried-mcdonalds-mcveggie-burger-but.html",
                     date: "Sep 2025",
-                    image: null
+                    image: STOCK_FALLBACK
                 },
                 {
                     title: "I Tried Another Worst Reviewed Buffet in Montreal",
                     description: "Buffet des Continents: 'where taste buds go to die'? We tried the $40 international buffet so you don't have to.",
                     url: "https://kevinandcattravel.blogspot.com/2025/09/i-tried-another-worst-reviewed-buffet.html",
                     date: "Sep 2025",
-                    image: null
+                    image: STOCK_FALLBACK
                 },
                 {
                     title: "A Day Trip Montreal Granby Zoo Guide! (Waterpark, Zoo, Amusement Park)",
                     description: "Complete guide to Zoo de Granby – wildlife, water park, and amusement park. Perfect family day trip from Montreal.",
                     url: "https://kevinandcattravel.blogspot.com/2025/09/a-day-trip-montreal-granby-zoo-guide.html",
                     date: "Sep 2025",
-                    image: null
+                    image: STOCK_FALLBACK
                 }
             ];
 
@@ -803,43 +811,44 @@
                     const description = item.querySelector('description')?.textContent || '';
                     const pubDate = item.querySelector('pubDate')?.textContent || '';
                     
-                    // ---- Extract high‑quality image ----
+                    // ---- Extract high‑quality image with aggressive size upgrade ----
                     let imageUrl = null;
                     
-                    // 1. Try to find the first <img> inside the description (full‑size)
+                    // 1. Try to find the first <img> inside the description
                     const imgRegex = /<img[^>]+src=["']([^"']+)["']/i;
                     const imgMatch = description.match(imgRegex);
                     if (imgMatch && imgMatch[1]) {
-                        imageUrl = imgMatch[1];
-                        // Upgrade Blogger thumbnail URLs if needed (e.g., /s72-c/ → /s1600/)
-                        if (imageUrl.includes('/s72-c/')) {
-                            imageUrl = imageUrl.replace('/s72-c/', '/s1600/');
-                        } else if (imageUrl.includes('=s72-c')) {
-                            imageUrl = imageUrl.replace('=s72-c', '=s1600');
-                        } else if (imageUrl.includes('w72-h72')) {
-                            imageUrl = imageUrl.replace('w72-h72', 'w1600-h1600');
-                        }
+                        let url = imgMatch[1];
+                        // Upgrade Blogger thumbnail patterns to highest resolution
+                        url = url.replace(/\/s72-c\//, '/s1600/')
+                                 .replace(/\/s72\-w\d+\-h\d+\//, '/s1600/')
+                                 .replace(/=s72-c/, '=s1600')
+                                 .replace(/w72-h72/, 'w1600-h1600')
+                                 .replace(/\/w\d+-h\d+-/, '/w1600-h1600-');
+                        // Ensure https
+                        if (url.startsWith('http://')) url = url.replace('http://', 'https://');
+                        imageUrl = url;
                     }
                     
-                    // 2. Fallback to media:thumbnail (if no img found)
+                    // 2. Fallback to media:thumbnail
                     if (!imageUrl) {
                         const mediaThumbnail = item.getElementsByTagName('media:thumbnail')[0] || item.getElementsByTagName('thumbnail')[0];
                         if (mediaThumbnail && mediaThumbnail.getAttribute('url')) {
                             let url = mediaThumbnail.getAttribute('url');
-                            // Upgrade size from s72-c to s400
-                            if (url.includes('/s72-c/')) {
-                                url = url.replace('/s72-c/', '/s400/');
-                            } else if (url.includes('=s72-c')) {
-                                url = url.replace('=s72-c', '=s400');
-                            }
+                            url = url.replace(/\/s72-c\//, '/s1600/').replace(/=s72-c/, '=s1600');
                             imageUrl = url;
                         }
                     }
                     
-                    // Strip HTML tags from description and truncate for preview text
+                    // If still no image, use the beautiful stock fallback
+                    if (!imageUrl) {
+                        imageUrl = STOCK_FALLBACK;
+                    }
+                    
+                    // Strip HTML tags from description and truncate
                     const plainDesc = description.replace(/<[^>]*>/g, '').substring(0, 120) + '…';
                     
-                    // Format date nicely
+                    // Format date
                     let formattedDate = '';
                     try {
                         const d = new Date(pubDate);
@@ -857,14 +866,14 @@
                     });
                 });
                 
-                return posts.slice(0, 4); // show latest 4 posts
+                return posts.slice(0, 4); // latest 4 posts
             } catch (error) {
                 console.error('Failed to fetch blog posts, using fallback:', error);
-                return fallbackPosts; // fallback to static list
+                return fallbackPosts;
             }
         }
 
-        // ---------- render blog posts with high‑res images ----------
+        // ---------- render blog posts with high‑res images (now always a crisp photo) ----------
         async function renderBlogPosts() {
             const container = document.getElementById('blog-posts');
             if (!container) return;
@@ -873,15 +882,10 @@
 
             let html = '';
             posts.forEach(post => {
-                // Use post image if available, otherwise fallback icon
-                const thumbnailHtml = post.image 
-                    ? `<img src="${post.image}" alt="${post.title}" loading="lazy">`
-                    : `<i class="fas fa-blog" style="font-size: 4rem; color: #f4b400; opacity: 0.7;"></i>`;
-
                 html += `
                     <a href="${post.url}" class="blog-card" target="_blank">
-                        <div class="thumbnail" style="background: #2a2a2a; display: flex; align-items: center; justify-content: center;">
-                            ${thumbnailHtml}
+                        <div class="thumbnail">
+                            <img src="${post.image}" alt="${post.title}" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=338&fit=crop&auto=format';">
                         </div>
                         <div class="card-details">
                             <h4>${post.title} <span class="blog-badge">Blog</span></h4>
@@ -910,12 +914,11 @@
                     const published = entry.querySelector('published')?.textContent;
                     const updated = entry.querySelector('updated')?.textContent;
 
-                    // --- IMPROVED Shorts Filtering ---
+                    // Improved Shorts filtering
                     const isShortByTitle = title.match(/#shorts|shorts|#短剧|youtube shorts/i);
                     if (isShortByTitle) {
-                        return; // Skip this entry if it looks like a Short
+                        return; // Skip Shorts
                     }
-                    // --- End of Shorts Filtering ---
 
                     if (videoId) {
                         videos.push({
@@ -927,7 +930,7 @@
                     }
                 });
 
-                // Sort videos by published date, newest first (important for 'Latest Adventures')
+                // Sort by published date, newest first
                 videos.sort((a, b) => new Date(b.published) - new Date(a.published));
 
                 return videos;
@@ -945,7 +948,7 @@
                 korea: [],
                 mexico: [],
                 quebec: [],
-                recent: []
+                recent: []   // we'll no longer use this for 'latest adventures'
             };
             
             videos.forEach(video => {
@@ -960,14 +963,14 @@
                     }
                 }
                 if (!matched) {
-                    categorized.recent.push(video);
+                    categorized.recent.push(video); // keep for potential other uses, but not for latest section
                 }
             });
             
             return categorized;
         }
 
-        // ---------- render a fresh grid (overwrites) ----------
+        // ---------- render a grid (overwrites) ----------
         function renderGrid(containerId, videos, limit = 6) {
             const container = document.getElementById(containerId);
             if (!container) return;
@@ -977,8 +980,8 @@
                 return;
             }
             
-            const shuffled = [...videos].sort(() => 0.5 - Math.random());
-            const selected = shuffled.slice(0, Math.min(limit, videos.length));
+            // Take the first 'limit' videos (already sorted newest first)
+            const selected = videos.slice(0, Math.min(limit, videos.length));
             
             let html = '';
             selected.forEach(v => {
@@ -1004,6 +1007,7 @@
             const container = document.getElementById(containerId);
             if (!container || !videos || videos.length === 0) return;
 
+            // random selection from the destination-specific videos
             const shuffled = [...videos].sort(() => 0.5 - Math.random());
             const toAdd = shuffled.slice(0, Math.min(maxToAdd, videos.length));
 
@@ -1026,7 +1030,7 @@
             container.insertAdjacentHTML('beforeend', appendHtml);
         }
 
-        // ========== VIDEO SCHEMA GENERATOR (the secret sauce) ==========
+        // ========== VIDEO SCHEMA GENERATOR ==========
         function generateVideoSchema(videosArray) {
             if (!videosArray || videosArray.length === 0) return;
 
@@ -1059,13 +1063,13 @@
 
         // ---------- main ----------
         (async function() {
-            // 1. render blog posts (auto-updated with high‑res images)
+            // 1. render blog posts (high-res images + stock fallback)
             await renderBlogPosts();
 
             // 2. render all playlist cards (including Thailand)
             await renderAllPlaylistSections();
 
-            // 3. fetch & categorize RSS videos (videos array is now sorted newest first)
+            // 3. fetch & categorize RSS videos (videos array is sorted newest first)
             const videos = await fetchRSSVideos();
             const categorized = categorizeVideos(videos);
 
@@ -1076,8 +1080,8 @@
             appendVideos('mexico-videos', categorized.mexico, 3);
             appendVideos('quebec-videos', categorized.quebec, 3);
 
-            // 5. for 'recent-videos' we show only RSS (no playlist card) - now shows newest first
-            renderGrid('recent-videos', categorized.recent, 6);
+            // 5. 'Latest Adventures' now shows the 6 most recent videos from the whole channel (excluding Shorts)
+            renderGrid('recent-videos', videos, 6);
 
             // ========== BUILD VIDEO LIST FOR SCHEMA ==========
             const allVideoIds = new Set();
@@ -1085,7 +1089,7 @@
             PLAYLIST_SECTIONS.forEach(section => {
                 section.videos.forEach(v => allVideoIds.add(v.videoId));
             });
-            const recentForSchema = [...categorized.recent].slice(0, 10);
+            const recentForSchema = videos.slice(0, 10);
             recentForSchema.forEach(v => allVideoIds.add(v.videoId));
 
             const videoIds = Array.from(allVideoIds);
