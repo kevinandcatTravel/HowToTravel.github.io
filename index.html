@@ -179,7 +179,7 @@
             color: inherit;
             transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            max-width: 420px; /* prevent card from becoming too wide on large screens */
+            max-width: 420px;
             justify-self: center;
             width: 100%;
         }
@@ -197,7 +197,7 @@
         .thumbnail img {
             width: 100%;
             height: 100%;
-            object-fit: cover;        /* keeps aspect ratio, crops if needed */
+            object-fit: cover;
             display: block;
         }
         .play-overlay {
@@ -460,7 +460,7 @@
                 font-size: 1.6rem;
             }
             .video-card {
-                max-width: 100%;   /* on mobile allow full width */
+                max-width: 100%;
             }
         }
     </style>
@@ -507,8 +507,8 @@
         <div class="section-title"><i class="fas fa-sun"></i> Mexico / Playa del Carmen <span class="playlist-badge">Full Playlist</span></div>
         <div class="video-grid" id="mexico-videos"></div>
 
-        <!-- 3. QUEBEC CITY SPA -->
-        <div class="section-title"><i class="fas fa-snowflake"></i> Quebec City Spa <span class="playlist-badge">Full Playlist</span></div>
+        <!-- 3. QUEBEC CITY  -->
+        <div class="section-title"><i class="fas fa-snowflake"></i> Quebec City <span class="playlist-badge">Full Playlist</span></div>
         <div class="video-grid" id="quebec-videos"></div>
 
         <!-- 4. KOREA -->
@@ -651,7 +651,7 @@
                 videos: [ { videoId: 'aNqgi3zd1SM', playlistId: 'PLJ4TvzrUQAnpoHeJzswY1P_txcXDxMMFh' } ]
             },
             {
-                id: 'thailand-videos',                       // <-- THAILAND ADDED!
+                id: 'thailand-videos',
                 title: 'Thailand',
                 videos: [ { videoId: 'NzFGto1r8WI', playlistId: 'PLJ4TvzrUQAnq_juB9gzE5sQ-TnQ7YUVi2' } ]
             }
@@ -694,7 +694,6 @@
                     html += `
                         <a href="https://www.youtube.com/watch?v=${video.videoId}&list=${video.playlistId}" class="video-card" target="_blank">
                             <div class="thumbnail">
-                                <!-- using hqdefault for better quality -->
                                 <img src="https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg" alt="${title}" loading="lazy">
                                 <div class="play-overlay"><i class="fas fa-play"></i></div>
                             </div>
@@ -705,7 +704,7 @@
                         </a>
                     `;
                 }
-                container.innerHTML = html;   // playlist card(s)
+                container.innerHTML = html;
             }
         }
 
@@ -730,7 +729,7 @@
                             title,
                             videoId,
                             published,
-                            thumbnail: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`   // upgraded quality
+                            thumbnail: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
                         });
                     }
                 });
@@ -830,6 +829,42 @@
             container.insertAdjacentHTML('beforeend', appendHtml);
         }
 
+        // ========== VIDEO SCHEMA GENERATOR (the secret sauce) ==========
+        function generateVideoSchema(videosArray) {
+            // videosArray: array of { videoId, title, description?, uploadDate, thumbnailUrl? }
+            if (!videosArray || videosArray.length === 0) return;
+
+            const schemaList = videosArray.map(v => {
+                // build a clean description: if none provided, use title + channel name
+                const desc = v.description || `${v.title} – Kevin and Cat Travel. Watch our full adventure.`;
+                const uploadDate = v.uploadDate || new Date().toISOString().split('T')[0]; // fallback to today
+                const thumbnailUrl = v.thumbnailUrl || `https://img.youtube.com/vi/${v.videoId}/maxresdefault.jpg`;
+                return {
+                    "@context": "https://schema.org",
+                    "@type": "VideoObject",
+                    "name": v.title,
+                    "description": desc,
+                    "thumbnailUrl": thumbnailUrl,
+                    "uploadDate": uploadDate,
+                    "contentUrl": `https://www.youtube.com/watch?v=${v.videoId}`,
+                    "embedUrl": `https://www.youtube.com/embed/${v.videoId}`
+                };
+            });
+
+            // If there's already a schema script, remove it (to keep only latest)
+            const oldScript = document.querySelector('script[type="application/ld+json"][data-video-schema]');
+            if (oldScript) oldScript.remove();
+
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.setAttribute('data-video-schema', 'true');
+            // For multiple videos, we can either output one schema per video or wrap in an array.
+            // Google allows multiple VideoObjects in a single script as an array.
+            script.textContent = JSON.stringify(schemaList, null, 2);
+            document.head.appendChild(script);
+            console.log('✅ Video schema injected for', videosArray.length, 'videos');
+        }
+
         // ---------- main ----------
         (async function() {
             // 1. render all playlist cards (including Thailand)
@@ -848,9 +883,48 @@
 
             // 4. for 'recent-videos' we show only RSS (no playlist card)
             renderGrid('recent-videos', categorized.recent, 6);
+
+            // ========== BUILD VIDEO LIST FOR SCHEMA ==========
+            // Collect all videos we have on page: featured + playlist + some recent RSS
+            const allVideoIds = new Set();
+
+            // featured video
+            allVideoIds.add('JXcRqlr6dBY');
+
+            // all playlist videos
+            PLAYLIST_SECTIONS.forEach(section => {
+                section.videos.forEach(v => allVideoIds.add(v.videoId));
+            });
+
+            // add up to 10 recent RSS videos (to avoid too many schemas)
+            const recentForSchema = [...categorized.recent].slice(0, 10);
+            recentForSchema.forEach(v => allVideoIds.add(v.videoId));
+
+            // convert to array and fetch titles/dates
+            const videoIds = Array.from(allVideoIds);
+            const videoData = [];
+
+            // use RSS map for upload dates where possible
+            const dateMap = new Map();
+            videos.forEach(v => dateMap.set(v.videoId, v.published));
+
+            for (let videoId of videoIds) {
+                const title = await fetchVideoTitle(videoId); // we already have titles for playlist, but easiest to refetch
+                const uploadDate = dateMap.get(videoId) || new Date().toISOString().split('T')[0];
+                videoData.push({
+                    videoId,
+                    title,
+                    uploadDate,
+                    description: `${title} – Full travel vlog by Kevin and Cat. See the real experience, tips, and hidden gems.`,
+                    thumbnailUrl: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+                });
+            }
+
+            // generate and inject VideoObject schema
+            generateVideoSchema(videoData);
         })();
 
-        // ---------- RANDOMIZER (unchanged, works perfectly) ----------
+        // ---------- RANDOMIZER ----------
         (function() {
             const keywordLibrary = {
                 japan: ["japan travel guide 2026", "japan itinerary 2 weeks", "japan food vlog", "tokyo street food", "osaka food guide", "kyoto travel tips", "japan hidden gems", "japan budget travel", "japan railway pass guide", "mount fuji travel", "japan cherry blossoms 2026", "best sushi tokyo"],
@@ -892,7 +966,6 @@
                 updateKeyword();
             });
 
-            // set default active to mexico
             document.querySelector('[data-dest="mexico"]').classList.add('active');
             currentDest = 'mexico';
             updateKeyword();
