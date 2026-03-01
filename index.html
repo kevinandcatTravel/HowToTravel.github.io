@@ -538,8 +538,8 @@
         <div class="section-title"><i class="fas fa-sun"></i> Mexico / Playa del Carmen <span class="playlist-badge">Full Playlist</span></div>
         <div class="video-grid" id="mexico-videos"></div>
 
-        <!-- 3. QUEBEC CITY SPA -->
-        <div class="section-title"><i class="fas fa-snowflake"></i> Quebec City Spa <span class="playlist-badge">Full Playlist</span></div>
+        <!-- 3. QUEBEC CITY -->
+        <div class="section-title"><i class="fas fa-snowflake"></i> Quebec City <span class="playlist-badge">Full Playlist</span></div>
         <div class="video-grid" id="quebec-videos"></div>
 
         <!-- 4. KOREA -->
@@ -635,7 +635,7 @@
             </div>
         </div>
 
-        <!-- NEW: Blog Section from Blogspot (auto‑updating) -->
+        <!-- NEW: Blog Section from Blogspot (auto‑updating with images) -->
         <div class="section-title"><i class="fas fa-blog" style="color: #f4b400;"></i> 📝 Latest from Our Blog</div>
         <div class="blog-grid" id="blog-posts"></div>
         <div class="blog-cta">
@@ -746,32 +746,36 @@
             }
         }
 
-        // ---------- fetch blog posts from Blogger RSS (auto-updating) ----------
+        // ---------- fetch blog posts from Blogger RSS with images ----------
         async function fetchBlogPosts() {
             const fallbackPosts = [
                 {
                     title: "The Top 10 Best Places to Eat in Playa del Carmen",
                     description: "Chez Waffles, Choripan, Mu Burgerhouse, Birria de la 30, Tropical Tacos and more – full guide with timestamps.",
                     url: "https://kevinandcattravel.blogspot.com/2025/09/the-top-10-best-places-to-eat-in-playa.html",
-                    date: "Sep 2025"
+                    date: "Sep 2025",
+                    image: null
                 },
                 {
                     title: "I Tried The McDonald's McVeggie Burger But is it Vegetarian?",
                     description: "Canada's new vegetarian burger – cooked in same fryer as fish? We review the McVeggie and Spicy Habanero.",
                     url: "https://kevinandcattravel.blogspot.com/2025/09/i-tried-mcdonalds-mcveggie-burger-but.html",
-                    date: "Sep 2025"
+                    date: "Sep 2025",
+                    image: null
                 },
                 {
                     title: "I Tried Another Worst Reviewed Buffet in Montreal",
                     description: "Buffet des Continents: 'where taste buds go to die'? We tried the $40 international buffet so you don't have to.",
                     url: "https://kevinandcattravel.blogspot.com/2025/09/i-tried-another-worst-reviewed-buffet.html",
-                    date: "Sep 2025"
+                    date: "Sep 2025",
+                    image: null
                 },
                 {
                     title: "A Day Trip Montreal Granby Zoo Guide! (Waterpark, Zoo, Amusement Park)",
                     description: "Complete guide to Zoo de Granby – wildlife, water park, and amusement park. Perfect family day trip from Montreal.",
                     url: "https://kevinandcattravel.blogspot.com/2025/09/a-day-trip-montreal-granby-zoo-guide.html",
-                    date: "Sep 2025"
+                    date: "Sep 2025",
+                    image: null
                 }
             ];
 
@@ -789,6 +793,18 @@
                     const description = item.querySelector('description')?.textContent || '';
                     const pubDate = item.querySelector('pubDate')?.textContent || '';
                     
+                    // Extract image from media:thumbnail
+                    let imageUrl = null;
+                    const mediaThumbnail = item.getElementsByTagName('media:thumbnail')[0] || item.getElementsByTagName('thumbnail')[0];
+                    if (mediaThumbnail && mediaThumbnail.getAttribute('url')) {
+                        let url = mediaThumbnail.getAttribute('url');
+                        // Upgrade thumbnail size from s72-c to s400 for better quality
+                        if (url.includes('/s72-c/')) {
+                            url = url.replace('/s72-c/', '/s400/');
+                        }
+                        imageUrl = url;
+                    }
+                    
                     // Strip HTML tags from description and truncate
                     const plainDesc = description.replace(/<[^>]*>/g, '').substring(0, 120) + '…';
                     
@@ -805,7 +821,8 @@
                         title,
                         url: link,
                         description: plainDesc,
-                        date: formattedDate
+                        date: formattedDate,
+                        image: imageUrl
                     });
                 });
                 return posts.slice(0, 4); // show latest 4 posts
@@ -815,7 +832,7 @@
             }
         }
 
-        // ---------- render blog posts ----------
+        // ---------- render blog posts with images ----------
         async function renderBlogPosts() {
             const container = document.getElementById('blog-posts');
             if (!container) return;
@@ -824,10 +841,15 @@
 
             let html = '';
             posts.forEach(post => {
+                // Use post image if available, otherwise fallback icon
+                const thumbnailHtml = post.image 
+                    ? `<img src="${post.image}" alt="${post.title}" loading="lazy">`
+                    : `<i class="fas fa-blog" style="font-size: 4rem; color: #f4b400; opacity: 0.7;"></i>`;
+
                 html += `
                     <a href="${post.url}" class="blog-card" target="_blank">
                         <div class="thumbnail" style="background: #2a2a2a; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-blog" style="font-size: 4rem; color: #f4b400; opacity: 0.7;"></i>
+                            ${thumbnailHtml}
                         </div>
                         <div class="card-details">
                             <h4>${post.title} <span class="blog-badge">Blog</span></h4>
@@ -994,7 +1016,7 @@
 
         // ---------- main ----------
         (async function() {
-            // 1. render blog posts (auto-updated)
+            // 1. render blog posts (auto-updated with images)
             await renderBlogPosts();
 
             // 2. render all playlist cards (including Thailand)
