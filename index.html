@@ -166,7 +166,7 @@
         }
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 1.8rem;
             margin-bottom: 2rem;
         }
@@ -179,6 +179,9 @@
             color: inherit;
             transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            max-width: 420px; /* prevent card from becoming too wide on large screens */
+            justify-self: center;
+            width: 100%;
         }
         .video-card:hover {
             transform: scale(1.02);
@@ -189,11 +192,13 @@
             position: relative;
             aspect-ratio: 16 / 9;
             background: #2a2a2a;
+            overflow: hidden;
         }
         .thumbnail img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover;        /* keeps aspect ratio, crops if needed */
+            display: block;
         }
         .play-overlay {
             position: absolute;
@@ -454,6 +459,9 @@
             .section-title {
                 font-size: 1.6rem;
             }
+            .video-card {
+                max-width: 100%;   /* on mobile allow full width */
+            }
         }
     </style>
 </head>
@@ -643,7 +651,7 @@
                 videos: [ { videoId: 'aNqgi3zd1SM', playlistId: 'PLJ4TvzrUQAnpoHeJzswY1P_txcXDxMMFh' } ]
             },
             {
-                id: 'thailand-videos',                       // <-- THAILADDED!
+                id: 'thailand-videos',                       // <-- THAILAND ADDED!
                 title: 'Thailand',
                 videos: [ { videoId: 'NzFGto1r8WI', playlistId: 'PLJ4TvzrUQAnq_juB9gzE5sQ-TnQ7YUVi2' } ]
             }
@@ -686,7 +694,8 @@
                     html += `
                         <a href="https://www.youtube.com/watch?v=${video.videoId}&list=${video.playlistId}" class="video-card" target="_blank">
                             <div class="thumbnail">
-                                <img src="https://img.youtube.com/vi/${video.videoId}/mqdefault.jpg" alt="${title}" loading="lazy">
+                                <!-- using hqdefault for better quality -->
+                                <img src="https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg" alt="${title}" loading="lazy">
                                 <div class="play-overlay"><i class="fas fa-play"></i></div>
                             </div>
                             <div class="card-details">
@@ -721,7 +730,7 @@
                             title,
                             videoId,
                             published,
-                            thumbnail: `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`
+                            thumbnail: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`   // upgraded quality
                         });
                     }
                 });
