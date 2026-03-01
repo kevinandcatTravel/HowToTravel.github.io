@@ -164,13 +164,13 @@
             color: #ff0000;
             font-size: 2rem;
         }
-        .video-grid {
+        .video-grid, .blog-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 1.8rem;
             margin-bottom: 2rem;
         }
-        .video-card {
+        .video-card, .blog-card {
             background: #1a1a1a;
             border-radius: 18px;
             overflow: hidden;
@@ -183,7 +183,7 @@
             justify-self: center;
             width: 100%;
         }
-        .video-card:hover {
+        .video-card:hover, .blog-card:hover {
             transform: scale(1.02);
             border-color: #3ea6ff;
             box-shadow: 0 10px 25px rgba(62, 166, 255, 0.2);
@@ -210,7 +210,7 @@
             opacity: 0;
             transition: opacity 0.2s;
         }
-        .video-card:hover .play-overlay {
+        .video-card:hover .play-overlay, .blog-card:hover .play-overlay {
             opacity: 1;
         }
         .play-overlay i {
@@ -231,7 +231,16 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
-        .views-count {
+        .card-details p {
+            color: #aaa;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .views-count, .blog-meta {
             color: #aaa;
             font-size: 0.85rem;
         }
@@ -239,6 +248,16 @@
             display: inline-block;
             background: #3ea6ff;
             color: white;
+            font-size: 0.7rem;
+            padding: 2px 10px;
+            border-radius: 30px;
+            margin-left: 8px;
+            font-weight: 600;
+        }
+        .blog-badge {
+            display: inline-block;
+            background: #f4b400; /* google blog orange */
+            color: #0f0f0f;
             font-size: 0.7rem;
             padding: 2px 10px;
             border-radius: 30px;
@@ -446,6 +465,18 @@
             color: #3ea6ff;
             text-decoration: none;
         }
+        .blog-cta {
+            text-align: center;
+            margin: 2rem 0 1rem;
+        }
+        .blog-cta .btn {
+            background: #f4b400;
+            color: #0f0f0f;
+            font-weight: 600;
+        }
+        .blog-cta .btn:hover {
+            background: #ffc234;
+        }
         @media (max-width: 800px) {
             .featured-grid {
                 grid-template-columns: 1fr;
@@ -459,7 +490,7 @@
             .section-title {
                 font-size: 1.6rem;
             }
-            .video-card {
+            .video-card, .blog-card {
                 max-width: 100%;
             }
         }
@@ -507,8 +538,8 @@
         <div class="section-title"><i class="fas fa-sun"></i> Mexico / Playa del Carmen <span class="playlist-badge">Full Playlist</span></div>
         <div class="video-grid" id="mexico-videos"></div>
 
-        <!-- 3. QUEBEC CITY  -->
-        <div class="section-title"><i class="fas fa-snowflake"></i> Quebec City <span class="playlist-badge">Full Playlist</span></div>
+        <!-- 3. QUEBEC CITY SPA -->
+        <div class="section-title"><i class="fas fa-snowflake"></i> Quebec City Spa <span class="playlist-badge">Full Playlist</span></div>
         <div class="video-grid" id="quebec-videos"></div>
 
         <!-- 4. KOREA -->
@@ -604,6 +635,13 @@
             </div>
         </div>
 
+        <!-- NEW: Blog Section from Blogspot -->
+        <div class="section-title"><i class="fas fa-blog" style="color: #f4b400;"></i> 📝 Latest from Our Blog</div>
+        <div class="blog-grid" id="blog-posts"></div>
+        <div class="blog-cta">
+            <a href="https://kevinandcattravel.blogspot.com" target="_blank" class="btn" style="background: #f4b400; color: #0f0f0f;"><i class="fas fa-external-link-alt"></i> Visit Our Main Blog →</a>
+        </div>
+
         <!-- footer -->
         <div class="footer">
             <p><a href="https://www.youtube.com/@KevinAndCatTravel" target="_blank">Kevin And Cat Travel</a> • Food & Travel Adventures • Subscribe for more!</p>
@@ -657,6 +695,34 @@
             }
         ];
 
+        // ----- BLOG POSTS (from your Blogspot) -----
+        const BLOG_POSTS = [
+            {
+                title: "The Top 10 Best Places to Eat in Playa del Carmen",
+                description: "Chez Waffles, Choripan, Mu Burgerhouse, Birria de la 30, Tropical Tacos and more – full guide with timestamps.",
+                url: "https://kevinandcattravel.blogspot.com/2025/09/the-top-10-best-places-to-eat-in-playa.html",
+                date: "Sep 2025"
+            },
+            {
+                title: "I Tried The McDonald's McVeggie Burger But is it Vegetarian?",
+                description: "Canada's new vegetarian burger – cooked in same fryer as fish? We review the McVeggie and Spicy Habanero.",
+                url: "https://kevinandcattravel.blogspot.com/2025/09/i-tried-mcdonalds-mcveggie-burger-but.html",
+                date: "Sep 2025"
+            },
+            {
+                title: "I Tried Another Worst Reviewed Buffet in Montreal",
+                description: "Buffet des Continents: 'where taste buds go to die'? We tried the $40 international buffet so you don't have to.",
+                url: "https://kevinandcattravel.blogspot.com/2025/09/i-tried-another-worst-reviewed-buffet.html",
+                date: "Sep 2025"
+            },
+            {
+                title: "A Day Trip Montreal Granby Zoo Guide! (Waterpark, Zoo, Amusement Park)",
+                description: "Complete guide to Zoo de Granby – wildlife, water park, and amusement park. Perfect family day trip from Montreal.",
+                url: "https://kevinandcattravel.blogspot.com/2025/09/a-day-trip-montreal-granby-zoo-guide.html",
+                date: "Sep 2025"
+            }
+        ];
+
         // keyword mapping for RSS categorization
         const DEST_KEYWORDS = {
             thailand: ['thailand', 'bangkok', 'phuket', 'chiang mai', 'iconsiam', 'thai'],
@@ -706,6 +772,30 @@
                 }
                 container.innerHTML = html;
             }
+        }
+
+        // ---------- render blog posts ----------
+        function renderBlogPosts() {
+            const container = document.getElementById('blog-posts');
+            if (!container) return;
+
+            let html = '';
+            BLOG_POSTS.forEach(post => {
+                // generate a simple thumbnail using a random food/travel icon (since we don't have images)
+                html += `
+                    <a href="${post.url}" class="blog-card" target="_blank">
+                        <div class="thumbnail" style="background: #2a2a2a; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-blog" style="font-size: 4rem; color: #f4b400; opacity: 0.7;"></i>
+                        </div>
+                        <div class="card-details">
+                            <h4>${post.title} <span class="blog-badge">Blog</span></h4>
+                            <p>${post.description}</p>
+                            <span class="blog-meta"><i class="fas fa-calendar-alt"></i> ${post.date}</span>
+                        </div>
+                    </a>
+                `;
+            });
+            container.innerHTML = html;
         }
 
         // ---------- fetch RSS videos from channel ----------
@@ -831,13 +921,11 @@
 
         // ========== VIDEO SCHEMA GENERATOR (the secret sauce) ==========
         function generateVideoSchema(videosArray) {
-            // videosArray: array of { videoId, title, description?, uploadDate, thumbnailUrl? }
             if (!videosArray || videosArray.length === 0) return;
 
             const schemaList = videosArray.map(v => {
-                // build a clean description: if none provided, use title + channel name
                 const desc = v.description || `${v.title} – Kevin and Cat Travel. Watch our full adventure.`;
-                const uploadDate = v.uploadDate || new Date().toISOString().split('T')[0]; // fallback to today
+                const uploadDate = v.uploadDate || new Date().toISOString().split('T')[0];
                 const thumbnailUrl = v.thumbnailUrl || `https://img.youtube.com/vi/${v.videoId}/maxresdefault.jpg`;
                 return {
                     "@context": "https://schema.org",
@@ -851,15 +939,12 @@
                 };
             });
 
-            // If there's already a schema script, remove it (to keep only latest)
             const oldScript = document.querySelector('script[type="application/ld+json"][data-video-schema]');
             if (oldScript) oldScript.remove();
 
             const script = document.createElement('script');
             script.type = 'application/ld+json';
             script.setAttribute('data-video-schema', 'true');
-            // For multiple videos, we can either output one schema per video or wrap in an array.
-            // Google allows multiple VideoObjects in a single script as an array.
             script.textContent = JSON.stringify(schemaList, null, 2);
             document.head.appendChild(script);
             console.log('✅ Video schema injected for', videosArray.length, 'videos');
@@ -867,49 +952,42 @@
 
         // ---------- main ----------
         (async function() {
-            // 1. render all playlist cards (including Thailand)
+            // 1. render blog posts
+            renderBlogPosts();
+
+            // 2. render all playlist cards (including Thailand)
             await renderAllPlaylistSections();
 
-            // 2. fetch & categorize RSS videos
+            // 3. fetch & categorize RSS videos
             const videos = await fetchRSSVideos();
             const categorized = categorizeVideos(videos);
 
-            // 3. for destination sections, APPEND up to 3 fresh RSS videos after the playlist card
+            // 4. for destination sections, APPEND up to 3 fresh RSS videos after the playlist card
             appendVideos('thailand-videos', categorized.thailand, 3);
             appendVideos('japan-videos', categorized.japan, 3);
             appendVideos('korea-videos', categorized.korea, 3);
             appendVideos('mexico-videos', categorized.mexico, 3);
             appendVideos('quebec-videos', categorized.quebec, 3);
 
-            // 4. for 'recent-videos' we show only RSS (no playlist card)
+            // 5. for 'recent-videos' we show only RSS (no playlist card)
             renderGrid('recent-videos', categorized.recent, 6);
 
             // ========== BUILD VIDEO LIST FOR SCHEMA ==========
-            // Collect all videos we have on page: featured + playlist + some recent RSS
             const allVideoIds = new Set();
-
-            // featured video
-            allVideoIds.add('JXcRqlr6dBY');
-
-            // all playlist videos
+            allVideoIds.add('JXcRqlr6dBY'); // featured
             PLAYLIST_SECTIONS.forEach(section => {
                 section.videos.forEach(v => allVideoIds.add(v.videoId));
             });
-
-            // add up to 10 recent RSS videos (to avoid too many schemas)
             const recentForSchema = [...categorized.recent].slice(0, 10);
             recentForSchema.forEach(v => allVideoIds.add(v.videoId));
 
-            // convert to array and fetch titles/dates
             const videoIds = Array.from(allVideoIds);
             const videoData = [];
-
-            // use RSS map for upload dates where possible
             const dateMap = new Map();
             videos.forEach(v => dateMap.set(v.videoId, v.published));
 
             for (let videoId of videoIds) {
-                const title = await fetchVideoTitle(videoId); // we already have titles for playlist, but easiest to refetch
+                const title = await fetchVideoTitle(videoId);
                 const uploadDate = dateMap.get(videoId) || new Date().toISOString().split('T')[0];
                 videoData.push({
                     videoId,
@@ -919,8 +997,6 @@
                     thumbnailUrl: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
                 });
             }
-
-            // generate and inject VideoObject schema
             generateVideoSchema(videoData);
         })();
 
