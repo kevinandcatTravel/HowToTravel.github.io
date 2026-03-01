@@ -72,11 +72,13 @@
             gap: 10px;
             border: 1px solid #3a3a3a;
             transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
         .social-links a:hover {
             transform: translateY(-3px);
             background: #2a2a2a;
             border-color: #ff0000;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
         }
         .social-links a[href*="instagram"]:hover {
             background: #d62976;
@@ -90,6 +92,12 @@
         .social-links a[href*="mailto"]:hover {
             background: #c71610;
             border-color: #c71610;
+        }
+        /* new blog button hover – Blogger orange */
+        .social-links a[href*="blogspot"]:hover {
+            background: #f57d00;
+            border-color: #f57d00;
+            color: white;
         }
         .featured-grid {
             display: grid;
@@ -510,6 +518,8 @@
                 <a href="https://www.instagram.com/kevinandcattravel" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
                 <a href="https://www.tiktok.com/@kevinandcatlive" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
                 <a href="mailto:Kevinandcatlive@gmail.com"><i class="fas fa-envelope"></i> Business</a>
+                <!-- New blog link added here with Blogger icon -->
+                <a href="https://kevinandcattravel.blogspot.com/" target="_blank"><i class="fab fa-blogger"></i> Blog</a>
             </div>
         </div>
 
