@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kevinandcattravel.github.io/HowToTravel.github.io/
+Sitemap: https://kevinandcattravel.github.io/HowToTravel.github.io/sitemap.xml
