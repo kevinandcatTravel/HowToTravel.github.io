@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kevin & Cat Travel • Auto‑Updating</title>
-    <meta name="description" content="Latest travel vlogs from Kevin and Cat. Automatically updated with our newest YouTube videos from Thailand, Japan, Korea, Mexico, and Quebec.">
+    <title>Kevin & Cat Travel • 2026 • Auto‑Updating</title>
+    <meta name="description" content="Latest travel vlogs from Kevin and Cat. Automatically updated with our newest full-length videos from Thailand, Japan, Korea, Mexico, and Quebec.">
     <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff0000'%3E%3Cpath d='M10 9v6l5-3-5-3z'/%3E%3Cpath d='M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12z'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* (Keep all your existing CSS – it's unchanged) */
         * {
             margin: 0;
             padding: 0;
@@ -220,6 +221,34 @@
         .views-count {
             color: #aaa;
             font-size: 0.85rem;
+        }
+        /* Affiliate section styles */
+        .affiliate-section {
+            background: #1a1a1a;
+            border-radius: 24px;
+            padding: 2rem;
+            margin: 3rem 0;
+            border: 1px solid #333;
+            text-align: center;
+        }
+        .affiliate-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .affiliate-link {
+            color: #3ea6ff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            word-break: break-all;
+        }
+        .affiliate-link:hover {
+            text-decoration: underline;
+        }
+        .affiliate-banner {
+            max-width: 100%;
+            overflow: hidden;
         }
         /* Randomizer styles */
         .randomizer-section {
@@ -436,11 +465,30 @@
             <div class="video-grid" id="recent-videos"></div>
         </div>
 
-        <!-- Randomizer Tool (unchanged) -->
+        <!-- NEW AFFILIATE SECTION: Where We Book Our Travel -->
+        <div class="affiliate-section">
+            <div class="section-title" style="margin-top: 0;"><i class="fas fa-plane"></i> Where We Book Our Travel</div>
+            <div class="affiliate-content">
+                <p style="color: #ccc; max-width: 600px;">We always find the best deals on Expedia. Book through our link to support our adventures (at no extra cost to you)!</p>
+                
+                <!-- Expedia Banner (provided) -->
+                <div class="affiliate-banner">
+                    <div class="eg-affiliate-banners" data-program="ca-expedia" data-network="pz" data-layout="medium-rectangle" data-image="city" data-message="start-travel-planning" data-camref="1011l5cdjt" data-pubref="" data-link="home"></div>
+                </div>
+
+                <!-- Direct affiliate link -->
+                <a href="https://expedia.com/affiliates/kevinandcat/howtotravel" class="affiliate-link" target="_blank" rel="sponsored noopener">
+                    <i class="fas fa-external-link-alt"></i> expedia.com/affiliates/kevinandcat/howtotravel
+                </a>
+                <p style="color: #888; font-size: 0.9rem;">(Affiliate link – we may earn a commission)</p>
+            </div>
+        </div>
+
+        <!-- Randomizer Tool (updated to 2026) -->
         <div class="randomizer-section">
             <div class="randomizer-header">
-                <h3>🌏 Travel Trend Randomizer</h3>
-                <span class="trending-badge"><i class="fas fa-chart-line"></i> 2025 Trending Searches</span>
+                <h3>🌏 Travel Trend Randomizer 2026</h3>
+                <span class="trending-badge"><i class="fas fa-chart-line"></i> 2026 Trending Searches</span>
             </div>
             <p style="color:#aaa; margin-bottom:1.5rem;">Click any destination to get fresh, high-volume search keywords. Use these for your next video titles!</p>
             
@@ -454,7 +502,7 @@
 
             <div class="randomizer-display" id="randomizerDisplay">
                 <div class="trending-keyword">
-                    <i class="fab fa-youtube"></i> <span id="trendingKeyword">japan travel guide 2025</span>
+                    <i class="fab fa-youtube"></i> <span id="trendingKeyword">japan travel guide 2026</span>
                 </div>
                 <div class="action-buttons">
                     <button class="btn btn-primary" id="refreshKeyword"><i class="fas fa-sync-alt"></i> Refresh Keyword</button>
@@ -470,9 +518,12 @@
         <!-- Footer -->
         <div class="footer">
             <p><a href="https://www.youtube.com/@KevinAndCatTravel" target="_blank">Kevin And Cat Travel</a> • Food & Travel Adventures • Subscribe for more!</p>
-            <p style="margin-top: 1rem; font-size: 0.8rem;">© 2025 Kevin And Cat Travel. Videos automatically updated from our YouTube channel.</p>
+            <p style="margin-top: 1rem; font-size: 0.8rem;">© 2026 Kevin And Cat Travel. Videos automatically updated from our YouTube channel (no shorts).</p>
         </div>
     </div>
+
+    <!-- Expedia Affiliate Script -->
+    <script class="eg-affiliate-banners-script" src="https://creator.expediagroup.com/products/banners/assets/eg-affiliate-banners.js"></script>
 
     <script>
         // ==================== CONFIGURATION ====================
@@ -504,6 +555,13 @@
                     const title = entry.querySelector('title')?.textContent || 'Untitled';
                     const videoId = entry.querySelector('yt\\:videoId')?.textContent || entry.querySelector('videoId')?.textContent;
                     const published = entry.querySelector('published')?.textContent;
+                    
+                    // ---- FILTER OUT SHORTS ----
+                    // Skip if title contains #Shorts or shorts (case insensitive)
+                    if (title.match(/#shorts|shorts/i)) {
+                        return; // skip this video
+                    }
+                    
                     if (videoId) {
                         videos.push({
                             title,
@@ -598,14 +656,14 @@
             renderGrid('recent-videos', categorized.recent, 6); // show more recent uncategorized
         })();
 
-        // ==================== RANDOMIZER SCRIPT ====================
+        // ==================== RANDOMIZER SCRIPT (2026 keywords) ====================
         (function() {
             const keywordLibrary = {
-                japan: ["japan travel guide 2025", "japan itinerary 2 weeks", "japan food vlog", "tokyo street food", "osaka food guide", "kyoto travel tips", "japan hidden gems", "japan budget travel", "japan railway pass guide", "mount fuji travel", "japan cherry blossoms 2025", "best sushi tokyo", "japan convenience store food", "japan vlog 2025", "japan travel tips", "japan solo travel", "japan autumn leaves", "japan winter travel", "japan onsens guide", "japan ramen tour", "japan street food 2025", "japan travel itinerary", "japan cheap eats", "japan local food", "japan culture guide", "japan temples guide", "japan nightlife", "japan shopping guide", "japan accommodation tips", "japan packing list"],
-                korea: ["korea travel guide 2025", "seoul travel vlog", "korean street food", "busan travel guide", "south korea itinerary", "seoul food market", "korea budget travel", "korea hidden gems", "jeju island travel", "korea winter travel", "seoul night market", "korean bbq guide", "seoul cafe hopping", "korea vlog 2025", "korea travel tips", "myeongdong food tour", "hongdae seoul", "korea palace guide", "korea dmz tour", "korea hiking trails", "korean skincare shopping", "seoul solo travel", "korea fall foliage", "korea spring travel", "busan seafood market", "korea temple stay", "korea traditional food", "seoul accommodation", "korea transportation guide", "korea packing list 2025"],
-                thailand: ["thailand travel guide 2025", "bangkok street food", "thailand itinerary", "phuket travel vlog", "chiang mai guide", "thailand islands", "thailand budget travel", "bangkok night market", "thailand street food tour", "koh samui travel", "thailand hidden gems", "thailand food vlog", "ayutthaya day trip", "pai thailand guide", "thailand solo travel", "bangkok floating market", "thailand temples guide", "thailand beach guide", "thailand nightlife", "thailand cooking class", "thailand elephant sanctuary", "thailand scooter guide", "bangkok rooftop bars", "thailand muay thai", "thailand island hopping", "thailand rainy season", "thailand packing list", "thailand local food", "thailand luxury travel", "thailand backpacking 2025"],
-                montreal: ["montreal travel guide 2025", "montreal food tour", "old montreal attractions", "montreal hotels", "montreal poutine guide", "montreal bagels", "montreal nightlife", "montreal winter travel", "montreal cheap hotels", "montreal hotel review", "worst hotel montreal", "montreal underground city", "montreal solo travel", "montreal weekend itinerary", "montreal restaurants", "montreal cafes", "montreal mount royal", "montreal biosphere", "montreal old port", "montreal jazz festival", "montreal things to do", "montreal food guide", "montreal travel tips", "montreal budget travel", "montreal museums", "montreal shopping", "montreal day trips", "montreal quebec city", "montreal spring travel", "montreal fall colors", "montreal christmas market"],
-                quebec: ["quebec city travel guide", "old quebec hotels", "quebec city spa", "nordic spa quebec", "quebec winter travel", "quebec city things to do", "quebec city food tour", "quebec city itinerary", "quebec city old town", "quebec hotel review", "quebec city fairmont", "quebec ice hotel", "quebec city winter carnival", "quebec city restaurants", "quebec city from montreal", "quebec city solo travel", "quebec city budget guide", "quebec city chateau frontenac", "quebec city christmas", "quebec city fall foliage", "quebec city bike tour", "quebec city ferry", "quebec city museums", "quebec city day trips", "quebec city travel tips", "quebec city spa weekend", "quebec city romantic getaway", "quebec city food guide", "quebec city pet friendly", "quebec city summer travel 2025"]
+                japan: ["japan travel guide 2026", "japan itinerary 2 weeks", "japan food vlog", "tokyo street food", "osaka food guide", "kyoto travel tips", "japan hidden gems", "japan budget travel", "japan railway pass guide", "mount fuji travel", "japan cherry blossoms 2026", "best sushi tokyo", "japan convenience store food", "japan vlog 2026", "japan travel tips", "japan solo travel", "japan autumn leaves", "japan winter travel", "japan onsens guide", "japan ramen tour", "japan street food 2026", "japan travel itinerary", "japan cheap eats", "japan local food", "japan culture guide", "japan temples guide", "japan nightlife", "japan shopping guide", "japan accommodation tips", "japan packing list"],
+                korea: ["korea travel guide 2026", "seoul travel vlog", "korean street food", "busan travel guide", "south korea itinerary", "seoul food market", "korea budget travel", "korea hidden gems", "jeju island travel", "korea winter travel", "seoul night market", "korean bbq guide", "seoul cafe hopping", "korea vlog 2026", "korea travel tips", "myeongdong food tour", "hongdae seoul", "korea palace guide", "korea dmz tour", "korea hiking trails", "korean skincare shopping", "seoul solo travel", "korea fall foliage", "korea spring travel", "busan seafood market", "korea temple stay", "korea traditional food", "seoul accommodation", "korea transportation guide", "korea packing list 2026"],
+                thailand: ["thailand travel guide 2026", "bangkok street food", "thailand itinerary", "phuket travel vlog", "chiang mai guide", "thailand islands", "thailand budget travel", "bangkok night market", "thailand street food tour", "koh samui travel", "thailand hidden gems", "thailand food vlog", "ayutthaya day trip", "pai thailand guide", "thailand solo travel", "bangkok floating market", "thailand temples guide", "thailand beach guide", "thailand nightlife", "thailand cooking class", "thailand elephant sanctuary", "thailand scooter guide", "bangkok rooftop bars", "thailand muay thai", "thailand island hopping", "thailand rainy season", "thailand packing list", "thailand local food", "thailand luxury travel", "thailand backpacking 2026"],
+                montreal: ["montreal travel guide 2026", "montreal food tour", "old montreal attractions", "montreal hotels", "montreal poutine guide", "montreal bagels", "montreal nightlife", "montreal winter travel", "montreal cheap hotels", "montreal hotel review", "worst hotel montreal", "montreal underground city", "montreal solo travel", "montreal weekend itinerary", "montreal restaurants", "montreal cafes", "montreal mount royal", "montreal biosphere", "montreal old port", "montreal jazz festival", "montreal things to do", "montreal food guide", "montreal travel tips", "montreal budget travel", "montreal museums", "montreal shopping", "montreal day trips", "montreal quebec city", "montreal spring travel", "montreal fall colors", "montreal christmas market"],
+                quebec: ["quebec city travel guide", "old quebec hotels", "quebec city spa", "nordic spa quebec", "quebec winter travel", "quebec city things to do", "quebec city food tour", "quebec city itinerary", "quebec city old town", "quebec hotel review", "quebec city fairmont", "quebec ice hotel", "quebec city winter carnival", "quebec city restaurants", "quebec city from montreal", "quebec city solo travel", "quebec city budget guide", "quebec city chateau frontenac", "quebec city christmas", "quebec city fall foliage", "quebec city bike tour", "quebec city ferry", "quebec city museums", "quebec city day trips", "quebec city travel tips", "quebec city spa weekend", "quebec city romantic getaway", "quebec city food guide", "quebec city pet friendly", "quebec city summer travel 2026"]
             };
 
             const destButtons = document.querySelectorAll('.dest-btn');
