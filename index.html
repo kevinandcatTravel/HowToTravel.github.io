@@ -3,13 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kevin & Cat Travel • Japan • Korea • Thailand • Montreal • Quebec</title>
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Kevin and Cat Travel - Adventure travel vlogs from Japan, Korea, Thailand, Montreal, and Quebec City. Watch our latest hotel reviews, food tours, and hidden gems.">
-    <meta name="keywords" content="Kevin and Cat Travel, Japan travel vlog, Korea travel guide, Thailand street food, Montreal hotel review, Quebec City spa, travel vloggers">
-    <meta name="author" content="KevinAndCatTravel">
+    <title>Kevin & Cat Travel • Auto‑Updating</title>
+    <meta name="description" content="Latest travel vlogs from Kevin and Cat. Automatically updated with our newest YouTube videos from Thailand, Japan, Korea, Mexico, and Quebec.">
     <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff0000'%3E%3Cpath d='M10 9v6l5-3-5-3z'/%3E%3Cpath d='M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12z'/%3E%3C/svg%3E">
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -18,20 +14,16 @@
             box-sizing: border-box;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
-
         body {
             background-color: #0f0f0f;
             color: #e5e5e5;
             line-height: 1.5;
             padding: 2rem 1.5rem;
         }
-
         .container {
             max-width: 1400px;
             margin: 0 auto;
         }
-
-        /* Header Styles */
         .header {
             display: flex;
             flex-wrap: wrap;
@@ -41,7 +33,6 @@
             border-bottom: 1px solid #272727;
             padding-bottom: 1.25rem;
         }
-
         .logo-area h1 {
             font-size: 2rem;
             font-weight: 600;
@@ -50,7 +41,6 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
         .channel-link {
             color: #3ea6ff;
             text-decoration: none;
@@ -60,17 +50,14 @@
             gap: 6px;
             margin-top: 4px;
         }
-
         .channel-link:hover {
             color: #65b8ff;
         }
-
         .social-links {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
         }
-
         .social-links a {
             color: #e5e5e5;
             background: #272727;
@@ -84,11 +71,9 @@
             border: 1px solid #3f3f3f;
             transition: all 0.2s;
         }
-
         .social-links a:hover {
             transform: translateY(-2px);
         }
-
         .social-links a[href*="instagram"]:hover {
             background: #d62976;
             border-color: #d62976;
@@ -102,19 +87,15 @@
             background: #c71610;
             border-color: #c71610;
         }
-
-        /* Featured Video Section */
         .featured-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 2rem;
             margin-bottom: 3.5rem;
         }
-
         .featured-main {
             grid-column: 2 / 3;
         }
-
         .video-embed {
             background: #1a1a1a;
             border-radius: 18px;
@@ -122,28 +103,23 @@
             border: 1px solid #2a2a2a;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-
         .video-embed iframe {
             width: 100%;
             aspect-ratio: 16 / 9;
             border: none;
         }
-
         .video-info {
             padding: 1rem;
         }
-
         .video-info h3 {
             font-size: 1.2rem;
             color: #fff;
             margin-bottom: 0.25rem;
         }
-
         .video-info .views {
             color: #aaa;
             font-size: 0.9rem;
         }
-
         .hot-badge {
             background: #ff0000;
             color: white;
@@ -152,11 +128,9 @@
             border-radius: 30px;
             margin-left: 8px;
         }
-
         .featured-intro {
             align-self: center;
         }
-
         .featured-intro h2 {
             font-size: 2.2rem;
             font-weight: 600;
@@ -166,15 +140,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
         .featured-intro p {
             color: #bbb;
             font-size: 1.1rem;
             border-left: 4px solid #ff0000;
             padding-left: 1.2rem;
         }
-
-        /* Section Titles */
         .section-title {
             font-size: 1.8rem;
             font-weight: 600;
@@ -183,19 +154,15 @@
             align-items: center;
             gap: 12px;
         }
-        
         .section-title i {
             color: #ff0000;
         }
-
-        /* Video Grid */
         .video-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.8rem;
             margin-bottom: 2rem;
         }
-
         .video-card {
             background: #1a1a1a;
             border-radius: 16px;
@@ -205,24 +172,20 @@
             color: inherit;
             transition: transform 0.2s, border-color 0.2s;
         }
-
         .video-card:hover {
             transform: scale(1.02);
             border-color: #3ea6ff;
         }
-
         .thumbnail {
             position: relative;
             aspect-ratio: 16 / 9;
             background: #2a2a2a;
         }
-
         .thumbnail img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
         .play-overlay {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -233,34 +196,32 @@
             opacity: 0;
             transition: opacity 0.2s;
         }
-
         .video-card:hover .play-overlay {
             opacity: 1;
         }
-
         .play-overlay i {
             font-size: 3rem;
             color: white;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
-
         .card-details {
             padding: 12px;
         }
-
         .card-details h4 {
             font-weight: 500;
             margin-bottom: 4px;
             color: #fff;
             font-size: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
-
         .views-count {
             color: #aaa;
             font-size: 0.85rem;
         }
-
-        /* Enhanced Randomizer Section */
+        /* Randomizer styles */
         .randomizer-section {
             background: #1a1a1a;
             border-radius: 24px;
@@ -268,7 +229,6 @@
             margin: 4rem 0;
             border: 1px solid #333;
         }
-
         .randomizer-header {
             display: flex;
             align-items: center;
@@ -276,12 +236,10 @@
             margin-bottom: 2rem;
             flex-wrap: wrap;
         }
-
         .randomizer-header h3 {
             font-size: 1.8rem;
             font-weight: 600;
         }
-
         .trending-badge {
             background: #ff0000;
             color: white;
@@ -290,14 +248,12 @@
             font-size: 0.9rem;
             font-weight: 500;
         }
-
         .destination-panel {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
             margin-bottom: 2rem;
         }
-
         .dest-btn {
             background: #272727;
             border: 1px solid #3f3f3f;
@@ -312,33 +268,27 @@
             align-items: center;
             gap: 8px;
         }
-
         .dest-btn i {
             color: #ff6b6b;
         }
-
         .dest-btn:hover {
             background: #3f3f3f;
             border-color: #ff0000;
         }
-
         .dest-btn.active {
             background: #ff0000;
             color: white;
             border-color: #ff0000;
         }
-
         .dest-btn.active i {
             color: white;
         }
-
         .randomizer-display {
             background: #0f0f0f;
             border-radius: 20px;
             padding: 2rem;
             border: 1px solid #2a2a2a;
         }
-
         .trending-keyword {
             font-size: 2rem;
             font-weight: 600;
@@ -346,19 +296,16 @@
             margin-bottom: 1.5rem;
             word-break: break-word;
         }
-
         .trending-keyword i {
             color: #ff0000;
             margin-right: 15px;
             font-size: 2rem;
         }
-
         .action-buttons {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
         }
-
         .btn {
             padding: 14px 28px;
             border-radius: 40px;
@@ -372,38 +319,31 @@
             cursor: pointer;
             font-size: 1rem;
         }
-
         .btn-primary {
             background: #ff0000;
             color: white;
         }
-
         .btn-primary:hover {
             background: #cc0000;
             transform: translateY(-2px);
         }
-
         .btn-secondary {
             background: #272727;
             color: white;
             border: 1px solid #3f3f3f;
         }
-
         .btn-secondary:hover {
             background: #3f3f3f;
             transform: translateY(-2px);
         }
-
         .btn-youtube {
             background: #272727;
             color: white;
             border: 1px solid #ff0000;
         }
-
         .btn-youtube:hover {
             background: #ff0000;
         }
-
         .search-tip {
             margin-top: 1.5rem;
             color: #888;
@@ -411,7 +351,6 @@
             border-top: 1px solid #2a2a2a;
             padding-top: 1.5rem;
         }
-
         .footer {
             margin-top: 4rem;
             text-align: center;
@@ -419,12 +358,10 @@
             border-top: 1px solid #272727;
             padding-top: 2rem;
         }
-
         .footer a {
             color: #3ea6ff;
             text-decoration: none;
         }
-
         @media (max-width: 800px) {
             .featured-grid {
                 grid-template-columns: 1fr;
@@ -449,23 +386,17 @@
                 </a>
             </div>
             <div class="social-links">
-                <a href="https://www.instagram.com/kevinandcattravel" target="_blank">
-                    <i class="fab fa-instagram"></i> Instagram
-                </a>
-                <a href="https://www.tiktok.com/@kevinandcatlive" target="_blank">
-                    <i class="fab fa-tiktok"></i> TikTok
-                </a>
-                <a href="mailto:Kevinandcatlive@gmail.com">
-                    <i class="fas fa-envelope"></i> Business
-                </a>
+                <a href="https://www.instagram.com/kevinandcattravel" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://www.tiktok.com/@kevinandcatlive" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+                <a href="mailto:Kevinandcatlive@gmail.com"><i class="fas fa-envelope"></i> Business</a>
             </div>
         </div>
 
-        <!-- Featured Video: Montreal Nightmare -->
+        <!-- Featured Video: Montreal Nightmare (fixed) -->
         <div class="featured-grid">
             <div class="featured-intro">
                 <h2>Montreal's Worst Hotel<br>($22 Nightmare)</h2>
-                <p>We stayed so you don't have to! Ant infestations, booger walls, and felt curtains. The most viral hotel review of 2025.</p>
+                <p>We stayed so you don't have to! Ant infestations, booger walls, and felt curtains.</p>
             </div>
             <div class="featured-main">
                 <div class="video-embed">
@@ -478,123 +409,34 @@
             </div>
         </div>
 
-        <!-- Destination Sections -->
-        <!-- Thailand -->
-        <div class="section-title">
-            <i class="fas fa-umbrella-beach"></i> Thailand <span style="font-size:1rem; color:#888; margin-left:1rem;">Most Viewed</span>
+        <!-- Dynamic destination sections (filled by JavaScript) -->
+        <div id="thailand-section" class="destination-section">
+            <div class="section-title"><i class="fas fa-umbrella-beach"></i> Thailand</div>
+            <div class="video-grid" id="thailand-videos"></div>
         </div>
-        <div class="video-grid">
-            <a href="https://www.youtube.com/@KevinAndCatTravel" class="video-card" target="_blank">
-                <div class="thumbnail">
-                    <img src="https://img.youtube.com/vi/JXcRqlr6dBY/maxresdefault.jpg" alt="Thailand Street Food" loading="lazy">
-                    <div class="play-overlay"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="card-details">
-                    <h4>🇹🇭 Bangkok Street Food Tour - Best Cheap Eats 2025</h4>
-                    <span class="views-count"><i class="fas fa-eye"></i> 18K views</span>
-                </div>
-            </a>
-            <a href="https://www.youtube.com/@KevinAndCatTravel" class="video-card" target="_blank">
-                <div class="thumbnail">
-                    <img src="https://img.youtube.com/vi/JXcRqlr6dBY/hqdefault.jpg" alt="Thailand Night Market">
-                    <div class="play-overlay"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="card-details">
-                    <h4>🇹🇭 Chiang Mai Night Market - Crazy Food Adventure</h4>
-                    <span class="views-count"><i class="fas fa-eye"></i> 12K views</span>
-                </div>
-            </a>
+        <div id="japan-section" class="destination-section">
+            <div class="section-title"><i class="fas fa-torii-gate"></i> Japan</div>
+            <div class="video-grid" id="japan-videos"></div>
         </div>
-
-        <!-- Japan -->
-        <div class="section-title">
-            <i class="fas fa-torii-gate"></i> Japan
+        <div id="korea-section" class="destination-section">
+            <div class="section-title"><i class="fas fa-landmark"></i> Korea</div>
+            <div class="video-grid" id="korea-videos"></div>
         </div>
-        <div class="video-grid">
-            <a href="https://www.youtube.com/@KevinAndCatTravel" class="video-card" target="_blank">
-                <div class="thumbnail">
-                    <img src="https://img.youtube.com/vi/JXcRqlr6dBY/maxresdefault.jpg" alt="Japan Food Guide">
-                    <div class="play-overlay"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="card-details">
-                    <h4>🇯🇵 Tokyo Sushi Guide - Best Budget Sushi</h4>
-                    <span class="views-count"><i class="fas fa-eye"></i> 33K views</span>
-                </div>
-            </a>
-            <a href="https://www.youtube.com/@KevinAndCatTravel" class="video-card" target="_blank">
-                <div class="thumbnail">
-                    <img src="https://img.youtube.com/vi/JXcRqlr6dBY/hqdefault.jpg" alt="Osaka Food">
-                    <div class="play-overlay"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="card-details">
-                    <h4>🇯🇵 Osaka Street Food - Must Try Dishes</h4>
-                    <span class="views-count"><i class="fas fa-eye"></i> 21K views</span>
-                </div>
-            </a>
+        <div id="mexico-section" class="destination-section">
+            <div class="section-title"><i class="fas fa-sun"></i> Mexico</div>
+            <div class="video-grid" id="mexico-videos"></div>
+        </div>
+        <div id="quebec-section" class="destination-section">
+            <div class="section-title"><i class="fas fa-snowflake"></i> Quebec City</div>
+            <div class="video-grid" id="quebec-videos"></div>
+        </div>
+        <!-- Recent (uncategorized) videos -->
+        <div id="recent-section" class="destination-section">
+            <div class="section-title"><i class="fas fa-clock"></i> Latest Adventures</div>
+            <div class="video-grid" id="recent-videos"></div>
         </div>
 
-        <!-- Korea -->
-        <div class="section-title">
-            <i class="fas fa-landmark"></i> Korea
-        </div>
-        <div class="video-grid">
-            <a href="https://www.youtube.com/@KevinAndCatTravel" class="video-card" target="_blank">
-                <div class="thumbnail">
-                    <img src="https://img.youtube.com/vi/JXcRqlr6dBY/maxresdefault.jpg" alt="Seoul Food">
-                    <div class="play-overlay"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="card-details">
-                    <h4>🇰🇷 Seoul Food Market - $10 Challenge</h4>
-                    <span class="views-count"><i class="fas fa-eye"></i> 16K views</span>
-                </div>
-            </a>
-        </div>
-
-        <!-- Mexico -->
-        <div class="section-title">
-            <i class="fas fa-sun"></i> Mexico
-        </div>
-        <div class="video-grid">
-            <a href="https://www.youtube.com/@KevinAndCatTravel" class="video-card" target="_blank">
-                <div class="thumbnail">
-                    <img src="https://img.youtube.com/vi/JXcRqlr6dBY/maxresdefault.jpg" alt="Playa del Carmen">
-                    <div class="play-overlay"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="card-details">
-                    <h4>🇲🇽 Playa del Carmen - Best Taco Spots</h4>
-                    <span class="views-count"><i class="fas fa-eye"></i> 22K views</span>
-                </div>
-            </a>
-        </div>
-
-        <!-- Quebec City -->
-        <div class="section-title">
-            <i class="fas fa-snowflake"></i> Quebec City Spa
-        </div>
-        <div class="video-grid">
-            <a href="https://www.youtube.com/@KevinAndCatTravel" class="video-card" target="_blank">
-                <div class="thumbnail">
-                    <img src="https://img.youtube.com/vi/JXcRqlr6dBY/maxresdefault.jpg" alt="Quebec Spa">
-                    <div class="play-overlay"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="card-details">
-                    <h4>❄️ Nordic Spa Experience - Winter Escape</h4>
-                    <span class="views-count"><i class="fas fa-eye"></i> 9.8K views</span>
-                </div>
-            </a>
-            <a href="https://www.youtube.com/@KevinAndCatTravel" class="video-card" target="_blank">
-                <div class="thumbnail">
-                    <img src="https://img.youtube.com/vi/JXcRqlr6dBY/hqdefault.jpg" alt="Old Quebec">
-                    <div class="play-overlay"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="card-details">
-                    <h4>💆 Old Quebec Luxury Spa Day</h4>
-                    <span class="views-count"><i class="fas fa-eye"></i> 7.2K views</span>
-                </div>
-            </a>
-        </div>
-
-        <!-- ENHANCED RANDOMIZER SECTION -->
+        <!-- Randomizer Tool (unchanged) -->
         <div class="randomizer-section">
             <div class="randomizer-header">
                 <h3>🌏 Travel Trend Randomizer</h3>
@@ -603,21 +445,11 @@
             <p style="color:#aaa; margin-bottom:1.5rem;">Click any destination to get fresh, high-volume search keywords. Use these for your next video titles!</p>
             
             <div class="destination-panel" id="destinationPanel">
-                <button class="dest-btn active" data-dest="japan">
-                    <i class="fas fa-torii-gate"></i> Japan
-                </button>
-                <button class="dest-btn" data-dest="korea">
-                    <i class="fas fa-landmark"></i> Korea
-                </button>
-                <button class="dest-btn" data-dest="thailand">
-                    <i class="fas fa-umbrella-beach"></i> Thailand
-                </button>
-                <button class="dest-btn" data-dest="montreal">
-                    <i class="fas fa-city"></i> Montreal
-                </button>
-                <button class="dest-btn" data-dest="quebec">
-                    <i class="fas fa-snowflake"></i> Quebec City
-                </button>
+                <button class="dest-btn active" data-dest="japan"><i class="fas fa-torii-gate"></i> Japan</button>
+                <button class="dest-btn" data-dest="korea"><i class="fas fa-landmark"></i> Korea</button>
+                <button class="dest-btn" data-dest="thailand"><i class="fas fa-umbrella-beach"></i> Thailand</button>
+                <button class="dest-btn" data-dest="montreal"><i class="fas fa-city"></i> Montreal</button>
+                <button class="dest-btn" data-dest="quebec"><i class="fas fa-snowflake"></i> Quebec City</button>
             </div>
 
             <div class="randomizer-display" id="randomizerDisplay">
@@ -625,15 +457,9 @@
                     <i class="fab fa-youtube"></i> <span id="trendingKeyword">japan travel guide 2025</span>
                 </div>
                 <div class="action-buttons">
-                    <button class="btn btn-primary" id="refreshKeyword">
-                        <i class="fas fa-sync-alt"></i> Refresh Keyword
-                    </button>
-                    <a href="#" id="searchYouTubeBtn" class="btn btn-youtube" target="_blank">
-                        <i class="fab fa-youtube"></i> Search on YouTube
-                    </a>
-                    <a href="https://www.youtube.com/@KevinAndCatTravel" class="btn btn-secondary" target="_blank">
-                        <i class="fas fa-arrow-right"></i> Visit Our Channel
-                    </a>
+                    <button class="btn btn-primary" id="refreshKeyword"><i class="fas fa-sync-alt"></i> Refresh Keyword</button>
+                    <a href="#" id="searchYouTubeBtn" class="btn btn-youtube" target="_blank"><i class="fab fa-youtube"></i> Search on YouTube</a>
+                    <a href="https://www.youtube.com/@KevinAndCatTravel" class="btn btn-secondary" target="_blank"><i class="fas fa-arrow-right"></i> Visit Our Channel</a>
                 </div>
                 <div class="search-tip">
                     <i class="fas fa-lightbulb" style="color: #ffd700;"></i> <strong>Pro tip:</strong> Click refresh for new keyword ideas. When you find a trending topic, make a video about it and link back to our channel!
@@ -644,113 +470,177 @@
         <!-- Footer -->
         <div class="footer">
             <p><a href="https://www.youtube.com/@KevinAndCatTravel" target="_blank">Kevin And Cat Travel</a> • Food & Travel Adventures • Subscribe for more!</p>
-            <p style="margin-top: 1rem; font-size: 0.8rem;">© 2025 Kevin And Cat Travel. All videos link to our YouTube channel.</p>
+            <p style="margin-top: 1rem; font-size: 0.8rem;">© 2025 Kevin And Cat Travel. Videos automatically updated from our YouTube channel.</p>
         </div>
     </div>
 
-    <!-- Enhanced Randomizer JavaScript -->
     <script>
+        // ==================== CONFIGURATION ====================
+        const CHANNEL_ID = 'UCeRIQOqgsJ_YSufuDrYuIsg';   // Your channel ID
+        
+        // Keywords for each destination (all lowercase)
+        const DEST_KEYWORDS = {
+            thailand: ['thailand', 'bangkok', 'phuket', 'chiang mai', 'iconsiam', 'thai'],
+            japan: ['japan', 'tokyo', 'osaka', 'kyoto', 'sushi', 'ramen', 'japanese'],
+            korea: ['korea', 'seoul', 'busan', 'korean', 'jeju', 'south korea'],
+            mexico: ['mexico', 'playa del carmen', 'cancun', 'tacos', 'riviera maya', 'mexican'],
+            quebec: ['quebec', 'montreal', 'quebec city', 'spa', 'old quebec', 'montréal']
+        };
+
+        // CORS proxy (free, public)
+        const PROXY_URL = 'https://api.allorigins.win/raw?url=';
+        const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
+
+        // ==================== FETCH VIDEOS ====================
+        async function fetchVideos() {
+            try {
+                const response = await fetch(PROXY_URL + encodeURIComponent(RSS_URL));
+                const xmlText = await response.text();
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(xmlText, 'application/xml');
+                const entries = xml.querySelectorAll('entry');
+                const videos = [];
+                entries.forEach(entry => {
+                    const title = entry.querySelector('title')?.textContent || 'Untitled';
+                    const videoId = entry.querySelector('yt\\:videoId')?.textContent || entry.querySelector('videoId')?.textContent;
+                    const published = entry.querySelector('published')?.textContent;
+                    if (videoId) {
+                        videos.push({
+                            title,
+                            videoId,
+                            published,
+                            thumbnail: `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`
+                        });
+                    }
+                });
+                return videos;
+            } catch (error) {
+                console.error('Failed to fetch videos:', error);
+                return [];
+            }
+        }
+
+        // ==================== CATEGORIZE VIDEOS ====================
+        function categorizeVideos(videos) {
+            const categorized = {
+                thailand: [],
+                japan: [],
+                korea: [],
+                mexico: [],
+                quebec: [],
+                recent: []   // uncategorized
+            };
+            videos.forEach(video => {
+                const titleLower = video.title.toLowerCase();
+                let matched = false;
+                for (const [dest, keywords] of Object.entries(DEST_KEYWORDS)) {
+                    if (keywords.some(kw => titleLower.includes(kw))) {
+                        categorized[dest].push(video);
+                        matched = true;
+                        break;
+                    }
+                }
+                if (!matched) {
+                    categorized.recent.push(video);
+                }
+            });
+            return categorized;
+        }
+
+        // ==================== SHUFFLE ARRAY ====================
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // ==================== RENDER GRID ====================
+        function renderGrid(containerId, videos, limit = 3) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            if (!videos || videos.length === 0) {
+                container.innerHTML = '<p style="color:#777; grid-column:1/-1;">No videos yet. Check back soon!</p>';
+                return;
+            }
+            // Randomly select up to 'limit' videos
+            const shuffled = shuffleArray([...videos]);
+            const selected = shuffled.slice(0, Math.min(limit, videos.length));
+            let html = '';
+            selected.forEach(v => {
+                html += `
+                    <a href="https://www.youtube.com/watch?v=${v.videoId}" class="video-card" target="_blank">
+                        <div class="thumbnail">
+                            <img src="${v.thumbnail}" alt="${v.title.replace(/"/g, '&quot;')}" loading="lazy">
+                            <div class="play-overlay"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="card-details">
+                            <h4>${v.title}</h4>
+                            <span class="views-count"><i class="fas fa-calendar"></i> ${new Date(v.published).toLocaleDateString()}</span>
+                        </div>
+                    </a>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // ==================== MAIN ====================
+        (async function() {
+            const videos = await fetchVideos();
+            const categorized = categorizeVideos(videos);
+            
+            renderGrid('thailand-videos', categorized.thailand, 3);
+            renderGrid('japan-videos', categorized.japan, 3);
+            renderGrid('korea-videos', categorized.korea, 3);
+            renderGrid('mexico-videos', categorized.mexico, 3);
+            renderGrid('quebec-videos', categorized.quebec, 3);
+            renderGrid('recent-videos', categorized.recent, 6); // show more recent uncategorized
+        })();
+
+        // ==================== RANDOMIZER SCRIPT ====================
         (function() {
-            // Massive keyword library for each destination
             const keywordLibrary = {
-                japan: [
-                    "japan travel guide 2025", "japan itinerary 2 weeks", "japan food vlog", "tokyo street food",
-                    "osaka food guide", "kyoto travel tips", "japan hidden gems", "japan budget travel",
-                    "japan railway pass guide", "mount fuji travel", "japan cherry blossoms 2025",
-                    "best sushi tokyo", "japan convenience store food", "japan vlog 2025", "japan travel tips",
-                    "japan solo travel", "japan autumn leaves", "japan winter travel", "japan onsens guide",
-                    "japan ramen tour", "japan street food 2025", "japan travel itinerary", "japan cheap eats",
-                    "japan local food", "japan culture guide", "japan temples guide", "japan nightlife",
-                    "japan shopping guide", "japan accommodation tips", "japan packing list"
-                ],
-                korea: [
-                    "korea travel guide 2025", "seoul travel vlog", "korean street food", "busan travel guide",
-                    "south korea itinerary", "seoul food market", "korea budget travel", "korea hidden gems",
-                    "jeju island travel", "korea winter travel", "seoul night market", "korean bbq guide",
-                    "seoul cafe hopping", "korea vlog 2025", "korea travel tips", "myeongdong food tour",
-                    "hongdae seoul", "korea palace guide", "korea dmz tour", "korea hiking trails",
-                    "korean skincare shopping", "seoul solo travel", "korea fall foliage", "korea spring travel",
-                    "busan seafood market", "korea temple stay", "korea traditional food", "seoul accommodation",
-                    "korea transportation guide", "korea packing list 2025"
-                ],
-                thailand: [
-                    "thailand travel guide 2025", "bangkok street food", "thailand itinerary", "phuket travel vlog",
-                    "chiang mai guide", "thailand islands", "thailand budget travel", "bangkok night market",
-                    "thailand street food tour", "koh samui travel", "thailand hidden gems", "thailand food vlog",
-                    "ayutthaya day trip", "pai thailand guide", "thailand solo travel", "bangkok floating market",
-                    "thailand temples guide", "thailand beach guide", "thailand nightlife", "thailand cooking class",
-                    "thailand elephant sanctuary", "thailand scooter guide", "bangkok rooftop bars",
-                    "thailand muay thai", "thailand island hopping", "thailand rainy season", "thailand packing list",
-                    "thailand local food", "thailand luxury travel", "thailand backpacking 2025"
-                ],
-                montreal: [
-                    "montreal travel guide 2025", "montreal food tour", "old montreal attractions", "montreal hotels",
-                    "montreal poutine guide", "montreal bagels", "montreal nightlife", "montreal winter travel",
-                    "montreal cheap hotels", "montreal hotel review", "worst hotel montreal", "montreal underground city",
-                    "montreal solo travel", "montreal weekend itinerary", "montreal restaurants", "montreal cafes",
-                    "montreal mount royal", "montreal biosphere", "montreal old port", "montreal jazz festival",
-                    "montreal things to do", "montreal food guide", "montreal travel tips", "montreal budget travel",
-                    "montreal museums", "montreal shopping", "montreal day trips", "montreal quebec city",
-                    "montreal spring travel", "montreal fall colors", "montreal christmas market"
-                ],
-                quebec: [
-                    "quebec city travel guide", "old quebec hotels", "quebec city spa", "nordic spa quebec",
-                    "quebec winter travel", "quebec city things to do", "quebec city food tour", "quebec city itinerary",
-                    "quebec city old town", "quebec hotel review", "quebec city fairmont", "quebec ice hotel",
-                    "quebec city winter carnival", "quebec city restaurants", "quebec city from montreal",
-                    "quebec city solo travel", "quebec city budget guide", "quebec city chateau frontenac",
-                    "quebec city christmas", "quebec city fall foliage", "quebec city bike tour", "quebec city ferry",
-                    "quebec city museums", "quebec city day trips", "quebec city travel tips", "quebec city spa weekend",
-                    "quebec city romantic getaway", "quebec city food guide", "quebec city pet friendly",
-                    "quebec city summer travel 2025"
-                ]
+                japan: ["japan travel guide 2025", "japan itinerary 2 weeks", "japan food vlog", "tokyo street food", "osaka food guide", "kyoto travel tips", "japan hidden gems", "japan budget travel", "japan railway pass guide", "mount fuji travel", "japan cherry blossoms 2025", "best sushi tokyo", "japan convenience store food", "japan vlog 2025", "japan travel tips", "japan solo travel", "japan autumn leaves", "japan winter travel", "japan onsens guide", "japan ramen tour", "japan street food 2025", "japan travel itinerary", "japan cheap eats", "japan local food", "japan culture guide", "japan temples guide", "japan nightlife", "japan shopping guide", "japan accommodation tips", "japan packing list"],
+                korea: ["korea travel guide 2025", "seoul travel vlog", "korean street food", "busan travel guide", "south korea itinerary", "seoul food market", "korea budget travel", "korea hidden gems", "jeju island travel", "korea winter travel", "seoul night market", "korean bbq guide", "seoul cafe hopping", "korea vlog 2025", "korea travel tips", "myeongdong food tour", "hongdae seoul", "korea palace guide", "korea dmz tour", "korea hiking trails", "korean skincare shopping", "seoul solo travel", "korea fall foliage", "korea spring travel", "busan seafood market", "korea temple stay", "korea traditional food", "seoul accommodation", "korea transportation guide", "korea packing list 2025"],
+                thailand: ["thailand travel guide 2025", "bangkok street food", "thailand itinerary", "phuket travel vlog", "chiang mai guide", "thailand islands", "thailand budget travel", "bangkok night market", "thailand street food tour", "koh samui travel", "thailand hidden gems", "thailand food vlog", "ayutthaya day trip", "pai thailand guide", "thailand solo travel", "bangkok floating market", "thailand temples guide", "thailand beach guide", "thailand nightlife", "thailand cooking class", "thailand elephant sanctuary", "thailand scooter guide", "bangkok rooftop bars", "thailand muay thai", "thailand island hopping", "thailand rainy season", "thailand packing list", "thailand local food", "thailand luxury travel", "thailand backpacking 2025"],
+                montreal: ["montreal travel guide 2025", "montreal food tour", "old montreal attractions", "montreal hotels", "montreal poutine guide", "montreal bagels", "montreal nightlife", "montreal winter travel", "montreal cheap hotels", "montreal hotel review", "worst hotel montreal", "montreal underground city", "montreal solo travel", "montreal weekend itinerary", "montreal restaurants", "montreal cafes", "montreal mount royal", "montreal biosphere", "montreal old port", "montreal jazz festival", "montreal things to do", "montreal food guide", "montreal travel tips", "montreal budget travel", "montreal museums", "montreal shopping", "montreal day trips", "montreal quebec city", "montreal spring travel", "montreal fall colors", "montreal christmas market"],
+                quebec: ["quebec city travel guide", "old quebec hotels", "quebec city spa", "nordic spa quebec", "quebec winter travel", "quebec city things to do", "quebec city food tour", "quebec city itinerary", "quebec city old town", "quebec hotel review", "quebec city fairmont", "quebec ice hotel", "quebec city winter carnival", "quebec city restaurants", "quebec city from montreal", "quebec city solo travel", "quebec city budget guide", "quebec city chateau frontenac", "quebec city christmas", "quebec city fall foliage", "quebec city bike tour", "quebec city ferry", "quebec city museums", "quebec city day trips", "quebec city travel tips", "quebec city spa weekend", "quebec city romantic getaway", "quebec city food guide", "quebec city pet friendly", "quebec city summer travel 2025"]
             };
 
-            // Get DOM elements
             const destButtons = document.querySelectorAll('.dest-btn');
             const trendingSpan = document.getElementById('trendingKeyword');
             const refreshBtn = document.getElementById('refreshKeyword');
             const searchBtn = document.getElementById('searchYouTubeBtn');
-            let currentDest = 'japan'; // default
+            let currentDest = 'japan';
 
-            // Function to get random keyword from current destination
             function getRandomKeyword(dest) {
                 const keywords = keywordLibrary[dest] || keywordLibrary.japan;
                 return keywords[Math.floor(Math.random() * keywords.length)];
             }
 
-            // Update display with new keyword
             function updateKeyword() {
                 const keyword = getRandomKeyword(currentDest);
                 trendingSpan.textContent = keyword;
-                // Update search button link
                 searchBtn.href = `https://www.youtube.com/results?search_query=${encodeURIComponent(keyword)}`;
             }
 
-            // Handle destination button clicks
             destButtons.forEach(btn => {
                 btn.addEventListener('click', function() {
-                    // Remove active class from all
                     destButtons.forEach(b => b.classList.remove('active'));
-                    // Add active class to clicked button
                     this.classList.add('active');
-                    // Update current destination
                     currentDest = this.getAttribute('data-dest');
-                    // Show new keyword
                     updateKeyword();
                 });
             });
 
-            // Handle refresh button
-            refreshBtn.addEventListener('click', function() {
+            refreshBtn.addEventListener('click', function(e) {
+                e.preventDefault();
                 updateKeyword();
             });
 
-            // Initial load
             updateKeyword();
-
-            // Auto-refresh every 30 seconds to always show fresh ideas
-            setInterval(updateKeyword, 30000);
+            setInterval(updateKeyword, 30000); // refresh every 30 seconds
         })();
     </script>
 </body>
