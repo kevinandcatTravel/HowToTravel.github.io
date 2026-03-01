@@ -3,305 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kevin & Cat Travel — clean tabbed archive</title>
-    <meta name="description" content="Travel and food vlogs from Kevin and Cat. Minimal archive with all playlists: Food Reviews, Playa del Carmen, Quebec Spa, Korea, Montreal, Japan, Thailand.">
+    <title>Kevin & Cat Travel • 2026 • All Playlists + Gear</title>
+    <meta name="description" content="Travel and food vlogs from Kevin and Cat. Featuring Food Reviews, Playa del Carmen, Quebec Spa, Korea, Montreal, and Japan. Shop our gear and travel essentials.">
     <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff0000'%3E%3Cpath d='M10 9v6l5-3-5-3z'/%3E%3Cpath d='M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12z'/%3E%3C/svg%3E">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ----- CLEAN MODERN RESET ----- */
+        /* clean, modern styling – refined spacing & interactions */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
-
         body {
-            background-color: #fafafa;
-            color: #111;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #0f0f0f;
+            color: #e5e5e5;
             line-height: 1.5;
             padding: 2rem 1.5rem;
-            font-weight: 400;
         }
-
         .container {
-            max-width: 1280px;
+            max-width: 1440px;
             margin: 0 auto;
         }
-
-        /* ----- TYPOGRAPHY ----- */
-        h1, h2, h3, h4 {
-            font-weight: 500;
-            letter-spacing: -0.01em;
-        }
-
-        h1 {
-            font-size: 2.2rem;
-            color: #000;
-        }
-
-        h2 {
-            font-size: 1.6rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 500;
-            border-bottom: 1px solid #eaeaea;
-            padding-bottom: 0.5rem;
-        }
-
-        h2 i {
-            color: #e60023;
-            font-size: 1.4rem;
-        }
-
-        h3 {
-            font-size: 1.2rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        /* ----- HEADER (minimal) ----- */
         .header {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid #2a2a2a;
             padding-bottom: 1.5rem;
-            border-bottom: 1px solid #ececec;
         }
-
         .logo-area h1 {
             font-size: 2rem;
-            font-weight: 500;
-            color: #1a1a1a;
+            font-weight: 600;
+            background: linear-gradient(135deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
         .channel-link {
-            color: #666;
+            color: #3ea6ff;
             text-decoration: none;
-            font-size: 0.95rem;
-            display: inline-flex;
+            font-size: 1rem;
+            display: flex;
             align-items: center;
-            gap: 0.4rem;
-            margin-top: 0.2rem;
+            gap: 6px;
+            margin-top: 4px;
             transition: color 0.2s;
         }
-        .channel-link:hover { color: #e60023; }
-
+        .channel-link:hover {
+            color: #7ac0ff;
+        }
         .social-links {
             display: flex;
-            gap: 0.6rem;
+            gap: 1rem;
             flex-wrap: wrap;
         }
-
         .social-links a {
-            color: #444;
-            background: #ffffff;
-            padding: 0.4rem 1rem;
+            color: #e5e5e5;
+            background: #1e1e1e;
+            padding: 10px 20px;
             border-radius: 40px;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-weight: 500;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            border: 1px solid #ddd;
-            transition: all 0.2s;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            gap: 10px;
+            border: 1px solid #3a3a3a;
+            transition: all 0.2s ease;
         }
-
         .social-links a:hover {
-            background: #f5f5f5;
-            border-color: #aaa;
-            transform: translateY(-1px);
+            transform: translateY(-3px);
+            background: #2a2a2a;
+            border-color: #ff0000;
         }
-
-        /* ----- FEATURED VIDEO (clean two‑column) ----- */
+        .social-links a[href*="instagram"]:hover {
+            background: #d62976;
+            border-color: #d62976;
+        }
+        .social-links a[href*="tiktok"]:hover {
+            background: #010101;
+            color: #25f4ee;
+            border-color: #25f4ee;
+        }
+        .social-links a[href*="mailto"]:hover {
+            background: #c71610;
+            border-color: #c71610;
+        }
         .featured-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
+            gap: 2rem;
             margin-bottom: 4rem;
         }
-
-        .featured-intro {
-            align-self: center;
+        .featured-main {
+            grid-column: 2 / 3;
         }
-
-        .featured-intro h2 {
-            font-size: 2.4rem;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            border-bottom: none;
-            padding-bottom: 0;
-            color: #1a1a1a;
-        }
-
-        .featured-intro p {
-            color: #555;
-            font-size: 1.1rem;
-            border-left: 3px solid #e60023;
-            padding-left: 1.2rem;
-        }
-
         .video-embed {
-            background: #fff;
-            border-radius: 16px;
+            background: #1a1a1a;
+            border-radius: 20px;
             overflow: hidden;
-            border: 1px solid #eaeaea;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
-            transition: box-shadow 0.2s;
+            border: 1px solid #2a2a2a;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.7);
         }
-        .video-embed:hover {
-            box-shadow: 0 12px 28px rgba(0,0,0,0.05);
-        }
-
         .video-embed iframe {
             width: 100%;
             aspect-ratio: 16 / 9;
             border: none;
-            display: block;
         }
-
         .video-info {
-            padding: 1rem 1.2rem 1.2rem;
+            padding: 1rem 1.25rem;
         }
-
         .video-info h3 {
-            font-size: 1rem;
-            font-weight: 500;
-            color: #1a1a1a;
+            font-size: 1.25rem;
+            color: #fff;
             margin-bottom: 0.25rem;
         }
-
         .video-info .views {
-            color: #777;
-            font-size: 0.85rem;
+            color: #aaa;
+            font-size: 0.9rem;
         }
-
         .hot-badge {
-            background: #e60023;
+            background: #ff0000;
             color: white;
             font-size: 0.7rem;
-            padding: 0.2rem 0.6rem;
-            border-radius: 20px;
-            margin-left: 0.5rem;
-            font-weight: 500;
-            letter-spacing: 0.3px;
+            padding: 2px 8px;
+            border-radius: 30px;
+            margin-left: 8px;
+            font-weight: 600;
         }
-
-        /* ----- TABS (clean, underlined) ----- */
-        .tabs-container {
-            margin: 2.5rem 0 2rem;
+        .featured-intro {
+            align-self: center;
         }
-
-        .tabs {
+        .featured-intro h2 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .featured-intro p {
+            color: #bbb;
+            font-size: 1.15rem;
+            border-left: 4px solid #ff0000;
+            padding-left: 1.3rem;
+        }
+        .section-title {
+            font-size: 1.9rem;
+            font-weight: 600;
+            margin: 3rem 0 1.5rem;
             display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            border-bottom: 1px solid #eaeaea;
-            padding-bottom: 0.5rem;
-            margin-bottom: 2rem;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: -0.02em;
         }
-
-        .tab-btn {
-            background: none;
-            border: none;
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: #888;
-            cursor: pointer;
-            padding: 0.3rem 0;
-            position: relative;
-            transition: color 0.2s;
-            font-family: 'Inter', sans-serif;
+        .section-title i {
+            color: #ff0000;
+            font-size: 2rem;
         }
-
-        .tab-btn::after {
-            content: '';
-            position: absolute;
-            bottom: -0.55rem;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: #e60023;
-            transform: scaleX(0);
-            transition: transform 0.2s ease;
-        }
-
-        .tab-btn:hover {
-            color: #333;
-        }
-
-        .tab-btn.active {
-            color: #000;
-        }
-
-        .tab-btn.active::after {
-            transform: scaleX(1);
-        }
-
-        .tab-panel {
-            display: none;
-            animation: fadeIn 0.2s ease;
-        }
-
-        .tab-panel.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0.3; }
-            to { opacity: 1; }
-        }
-
-        /* ----- VIDEO GRID (minimal cards) ----- */
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.8rem;
             margin-bottom: 2rem;
         }
-
         .video-card {
-            background: #ffffff;
-            border-radius: 16px;
+            background: #1a1a1a;
+            border-radius: 18px;
             overflow: hidden;
-            border: 1px solid #ededed;
+            border: 1px solid #2a2a2a;
             text-decoration: none;
             color: inherit;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
-
         .video-card:hover {
-            transform: translateY(-4px);
-            border-color: #ccc;
-            box-shadow: 0 12px 24px rgba(0,0,0,0.04);
+            transform: scale(1.02);
+            border-color: #3ea6ff;
+            box-shadow: 0 10px 25px rgba(62, 166, 255, 0.2);
         }
-
         .thumbnail {
             position: relative;
             aspect-ratio: 16 / 9;
-            background: #f5f5f5;
+            background: #2a2a2a;
         }
-
         .thumbnail img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
         }
-
         .play-overlay {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.02);
+            background: rgba(0,0,0,0.4);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -312,320 +209,276 @@
             opacity: 1;
         }
         .play-overlay i {
-            font-size: 2.4rem;
-            color: rgba(0,0,0,0.7);
-            background: rgba(255,255,255,0.9);
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-size: 3rem;
+            color: white;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.7);
         }
-
         .card-details {
-            padding: 1rem;
+            padding: 14px;
         }
-
         .card-details h4 {
             font-weight: 500;
-            font-size: 0.95rem;
-            line-height: 1.4;
-            color: #1a1a1a;
-            margin-bottom: 0.25rem;
+            margin-bottom: 5px;
+            color: #fff;
+            font-size: 1rem;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
-
         .views-count {
-            color: #888;
-            font-size: 0.8rem;
+            color: #aaa;
+            font-size: 0.85rem;
         }
-
         .playlist-badge {
             display: inline-block;
-            background: #f0f0f0;
-            color: #444;
-            font-size: 0.65rem;
-            padding: 0.2rem 0.6rem;
-            border-radius: 20px;
-            margin-left: 0.4rem;
-            font-weight: 500;
-            letter-spacing: 0.2px;
+            background: #3ea6ff;
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 10px;
+            border-radius: 30px;
+            margin-left: 8px;
+            font-weight: 600;
         }
-
-        /* ----- AFFILIATE CARDS (clean, minimal) ----- */
+        .affiliate-section {
+            background: #1a1a1a;
+            border-radius: 28px;
+            padding: 2.5rem 2rem;
+            margin: 4rem 0;
+            border: 1px solid #2d2d2d;
+        }
         .affiliate-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
-
-        .affiliate-card {
-            background: #ffffff;
-            border: 1px solid #eaeaea;
-            border-radius: 16px;
-            padding: 1.8rem 1.2rem 1.5rem;
+        .affiliate-item {
+            background: #242424;
+            border-radius: 24px;
+            padding: 2rem 1.5rem;
             text-align: center;
-            transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            border: 1px solid #3a3a3a;
+            transition: transform 0.2s, border-color 0.2s;
         }
-
-        .affiliate-card:hover {
-            transform: translateY(-4px);
-            border-color: #ccc;
-            box-shadow: 0 12px 24px rgba(0,0,0,0.04);
+        .affiliate-item:hover {
+            transform: translateY(-6px);
+            border-color: #3ea6ff;
         }
-
-        .affiliate-card i {
-            font-size: 2.2rem;
-            color: #e60023;
-            margin-bottom: 0.8rem;
-        }
-
-        .affiliate-card .fa-amazon { color: #ff9900; }
-        .affiliate-card .fa-music { color: #1db954; }
-        .affiliate-card .fa-sim-card { color: #3ea6ff; }
-
-        .affiliate-card h4 {
-            font-size: 1.2rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        .affiliate-card p {
-            color: #666;
-            font-size: 0.9rem;
+        .affiliate-item i {
+            font-size: 2.8rem;
             margin-bottom: 1.2rem;
-            line-height: 1.5;
+            color: #ff9900;
         }
-
-        .affiliate-btn {
+        .affiliate-item .fa-music {
+            color: #1db954;
+        }
+        .affiliate-item .fa-sim-card {
+            color: #3ea6ff;
+        }
+        .affiliate-item h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.6rem;
+            color: #fff;
+        }
+        .affiliate-item p {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        .affiliate-item a {
             display: inline-block;
-            background: #1a1a1a;
+            background: #3ea6ff;
             color: white;
             text-decoration: none;
-            padding: 0.6rem 1.2rem;
+            padding: 12px 24px;
             border-radius: 40px;
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-weight: 600;
             transition: background 0.2s;
             border: none;
         }
-        .affiliate-btn:hover {
-            background: #333;
+        .affiliate-item a:hover {
+            background: #65b8ff;
         }
-
-        /* ----- EXPEDIA BANNER (kept original) ----- */
-        .expedia-banner {
-            background: #fff;
-            border-radius: 16px;
-            padding: 1.5rem;
-            border: 1px solid #eaeaea;
-            margin: 2rem 0;
-            text-align: center;
-        }
-        .expedia-banner p {
-            margin-bottom: 1rem;
-            color: #555;
-        }
-
-        /* ----- RANDOMIZER (clean) ----- */
         .randomizer-section {
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 2rem;
-            margin: 3rem 0;
-            border: 1px solid #eaeaea;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+            background: #1a1a1a;
+            border-radius: 28px;
+            padding: 2.5rem;
+            margin: 4rem 0;
+            border: 1px solid #2d2d2d;
         }
-
         .randomizer-header {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.2rem;
             margin-bottom: 2rem;
             flex-wrap: wrap;
         }
-
         .randomizer-header h3 {
-            font-size: 1.6rem;
-            font-weight: 500;
+            font-size: 2rem;
+            font-weight: 600;
         }
-
         .trending-badge {
-            background: #e60023;
+            background: #ff0000;
             color: white;
-            padding: 0.3rem 1rem;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.3px;
-        }
-
-        .destination-panel {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .dest-btn {
-            background: #f5f5f5;
-            border: 1px solid #ddd;
-            color: #444;
-            padding: 0.5rem 1.2rem;
+            padding: 8px 20px;
             border-radius: 40px;
             font-size: 0.9rem;
             font-weight: 500;
+        }
+        .destination-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+        .dest-btn {
+            background: #242424;
+            border: 1px solid #3a3a3a;
+            color: #ddd;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 500;
             cursor: pointer;
             transition: all 0.2s;
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 0.3rem;
+            gap: 8px;
         }
-
         .dest-btn i {
-            color: #e60023;
+            color: #ff6b6b;
         }
-
         .dest-btn:hover {
-            background: #ececec;
-            border-color: #aaa;
+            background: #333;
+            border-color: #ff0000;
         }
-
         .dest-btn.active {
-            background: #1a1a1a;
+            background: #ff0000;
             color: white;
-            border-color: #1a1a1a;
+            border-color: #ff0000;
         }
         .dest-btn.active i {
             color: white;
         }
-
         .randomizer-display {
-            background: #fafafa;
-            border-radius: 20px;
-            padding: 2rem;
-            border: 1px solid #ececec;
+            background: #0f0f0f;
+            border-radius: 24px;
+            padding: 2.5rem;
+            border: 1px solid #2a2a2a;
         }
-
         .trending-keyword {
-            font-size: 1.8rem;
-            font-weight: 500;
-            color: #1a1a1a;
-            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 2rem;
             word-break: break-word;
         }
-
         .trending-keyword i {
-            color: #e60023;
-            margin-right: 0.8rem;
+            color: #ff0000;
+            margin-right: 15px;
+            font-size: 2.2rem;
         }
-
         .action-buttons {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
         }
-
         .btn {
-            padding: 0.7rem 1.5rem;
+            padding: 14px 32px;
             border-radius: 40px;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 10px;
             transition: all 0.2s;
             border: none;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
-
         .btn-primary {
-            background: #e60023;
+            background: #ff0000;
             color: white;
         }
         .btn-primary:hover {
-            background: #c4001d;
+            background: #cc0000;
+            transform: translateY(-3px);
         }
-
         .btn-secondary {
-            background: #f0f0f0;
-            color: #333;
-            border: 1px solid #ddd;
+            background: #272727;
+            color: white;
+            border: 1px solid #3f3f3f;
         }
         .btn-secondary:hover {
-            background: #e5e5e5;
+            background: #3f3f3f;
+            transform: translateY(-3px);
         }
-
         .btn-youtube {
-            background: #f0f0f0;
-            color: #333;
-            border: 1px solid #ddd;
+            background: #272727;
+            color: white;
+            border: 1px solid #ff0000;
         }
         .btn-youtube:hover {
-            background: #ffe5e5;
-            border-color: #e60023;
+            background: #ff0000;
+            transform: translateY(-3px);
         }
-
         .search-tip {
-            margin-top: 1.5rem;
+            margin-top: 2rem;
             color: #888;
-            font-size: 0.85rem;
-            border-top: 1px solid #ececec;
-            padding-top: 1.5rem;
+            font-size: 0.95rem;
+            border-top: 1px solid #2a2a2a;
+            padding-top: 1.8rem;
         }
-
-        /* ----- FOOTER ----- */
         .footer {
-            margin-top: 4rem;
+            margin-top: 5rem;
             text-align: center;
-            color: #999;
-            border-top: 1px solid #ececec;
-            padding-top: 2rem;
-            font-size: 0.9rem;
+            color: #666;
+            border-top: 1px solid #272727;
+            padding-top: 2.2rem;
         }
-
         .footer a {
-            color: #333;
+            color: #3ea6ff;
             text-decoration: none;
         }
-
-        /* responsiveness */
-        @media (max-width: 700px) {
-            .featured-grid { grid-template-columns: 1fr; }
-            .tabs { gap: 1rem; }
+        @media (max-width: 800px) {
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+            .featured-main {
+                grid-column: 1;
+            }
+            .trending-keyword {
+                font-size: 1.5rem;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- HEADER (minimal) -->
+        <!-- header -->
         <div class="header">
             <div class="logo-area">
                 <h1>Kevin & Cat Travel</h1>
                 <a class="channel-link" href="https://www.youtube.com/@KevinAndCatTravel?sub_confirmation=1" target="_blank">
-                    <i class="fab fa-youtube" style="color:#e60023;"></i> @KevinAndCatTravel
+                    <i class="fab fa-youtube"></i> @KevinAndCatTravel
                 </a>
             </div>
             <div class="social-links">
-                <a href="https://www.instagram.com/kevinandcattravel" target="_blank"><i class="fab fa-instagram"></i> IG</a>
+                <a href="https://www.instagram.com/kevinandcattravel" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
                 <a href="https://www.tiktok.com/@kevinandcatlive" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
                 <a href="mailto:Kevinandcatlive@gmail.com"><i class="fas fa-envelope"></i> Business</a>
             </div>
         </div>
 
-        <!-- FEATURED VIDEO (Montreal nightmare) -->
+        <!-- featured: montreal nightmare -->
         <div class="featured-grid">
             <div class="featured-intro">
                 <h2>Montreal's Worst Hotel<br>($22 Nightmare)</h2>
-                <p>We stayed so you don't have to. Ants, booger walls, felt curtains.</p>
+                <p>We stayed so you don't have to! Ant infestations, booger walls, and felt curtains.</p>
             </div>
             <div class="featured-main">
                 <div class="video-embed">
@@ -638,107 +491,94 @@
             </div>
         </div>
 
-        <!-- TABS INTERFACE (clean) -->
-        <div class="tabs-container">
-            <div class="tabs">
-                <button class="tab-btn active" data-tab="destinations">Destinations</button>
-                <button class="tab-btn" data-tab="food">Food Reviews</button>
-                <button class="tab-btn" data-tab="gear">Gear & Essentials</button>
-            </div>
+        <!-- 1. FOOD REVIEWS (playlist) -->
+        <div class="section-title"><i class="fas fa-utensils" style="color: #ff9900;"></i> 🍔 Food Reviews <span class="playlist-badge">Full Playlist</span></div>
+        <div class="video-grid" id="food-reviews-videos"></div>
 
-            <!-- TAB 1: DESTINATIONS (Mexico, Quebec, Korea, Montreal, Japan, Thailand) -->
-            <div class="tab-panel active" id="tab-destinations">
-                <!-- Mexico -->
-                <div class="section-title"><h2><i class="fas fa-sun"></i> Mexico / Playa del Carmen</h2></div>
-                <div class="video-grid" id="mexico-videos"></div>
+        <!-- 2. MEXICO / PLAYA DEL CARMEN -->
+        <div class="section-title"><i class="fas fa-sun"></i> Mexico / Playa del Carmen <span class="playlist-badge">Full Playlist</span></div>
+        <div class="video-grid" id="mexico-videos"></div>
 
-                <!-- Quebec -->
-                <div class="section-title"><h2><i class="fas fa-snowflake"></i> Quebec City Spa</h2></div>
-                <div class="video-grid" id="quebec-videos"></div>
+        <!-- 3. QUEBEC CITY SPA -->
+        <div class="section-title"><i class="fas fa-snowflake"></i> Quebec City Spa <span class="playlist-badge">Full Playlist</span></div>
+        <div class="video-grid" id="quebec-videos"></div>
 
-                <!-- Korea -->
-                <div class="section-title"><h2><i class="fas fa-landmark"></i> Korea</h2></div>
-                <div class="video-grid" id="korea-videos"></div>
+        <!-- 4. KOREA -->
+        <div class="section-title"><i class="fas fa-landmark"></i> Korea <span class="playlist-badge">Full Playlist</span></div>
+        <div class="video-grid" id="korea-videos"></div>
 
-                <!-- Montreal -->
-                <div class="section-title"><h2><i class="fas fa-city"></i> Montreal Adventures</h2></div>
-                <div class="video-grid" id="montreal-videos"></div>
+        <!-- 5. MONTREAL -->
+        <div class="section-title"><i class="fas fa-city"></i> Montreal Adventures <span class="playlist-badge">Full Playlist</span></div>
+        <div class="video-grid" id="montreal-videos"></div>
 
-                <!-- Japan -->
-                <div class="section-title"><h2><i class="fas fa-torii-gate"></i> Japan</h2></div>
-                <div class="video-grid" id="japan-videos"></div>
+        <!-- 6. JAPAN -->
+        <div class="section-title"><i class="fas fa-torii-gate"></i> Japan <span class="playlist-badge">Full Playlist</span></div>
+        <div class="video-grid" id="japan-videos"></div>
 
-                <!-- Thailand -->
-                <div class="section-title"><h2><i class="fas fa-umbrella-beach"></i> Thailand</h2></div>
-                <div class="video-grid" id="thailand-videos"></div>
+        <!-- 7. THAILAND — now with your playlist! -->
+        <div class="section-title"><i class="fas fa-umbrella-beach"></i> Thailand <span class="playlist-badge">Full Playlist</span></div>
+        <div class="video-grid" id="thailand-videos"></div>
 
-                <!-- RSS recent (Thailand supplement + others) -->
-                <div class="section-title"><h2><i class="fas fa-clock"></i> Latest Adventures</h2></div>
-                <div class="video-grid" id="recent-videos"></div>
-            </div>
+        <!-- 8. LATEST ADVENTURES (RSS feed) -->
+        <div class="section-title"><i class="fas fa-clock"></i> Latest Adventures</div>
+        <div class="video-grid" id="recent-videos"></div>
 
-            <!-- TAB 2: FOOD REVIEWS -->
-            <div class="tab-panel" id="tab-food">
-                <div class="section-title"><h2><i class="fas fa-utensils" style="color:#e67e22;"></i> Food Reviews</h2></div>
-                <div class="video-grid" id="food-reviews-videos"></div>
-                <!-- Additional food videos from RSS can appear in 'recent' but we keep it simple -->
-            </div>
-
-            <!-- TAB 3: GEAR & ESSENTIALS (affiliates) -->
-            <div class="tab-panel" id="tab-gear">
-                <div class="section-title"><h2><i class="fas fa-camera"></i> Our Gear & Travel Essentials</h2></div>
-                <div class="affiliate-grid">
-                    <!-- Amazon -->
-                    <div class="affiliate-card">
-                        <i class="fab fa-amazon"></i>
-                        <h4>Amazon Storefront</h4>
-                        <p>All the gear we use for travel & filming – cameras, accessories, and more.</p>
-                        <a href="https://www.amazon.ca/shop/kevinandcattravel?ccs_id=9c724870-028f-4ff9-9de9-be5b68b7f4f4" class="affiliate-btn" target="_blank" rel="sponsored">Shop Now</a>
-                    </div>
-                    <!-- Epidemic Sound -->
-                    <div class="affiliate-card">
-                        <i class="fas fa-music"></i>
-                        <h4>Epidemic Sound</h4>
-                        <p>Royalty‑free music for your videos. Get 30 days free with our link.</p>
-                        <a href="https://www.epidemicsound.com/campaign/invite-a-creator/?_us=Referral&_usx=353d15&utm_source=ref_program&utm_medium=referralprogram&utm_campaign=353d15" class="affiliate-btn" target="_blank" rel="sponsored">Try Free</a>
-                    </div>
-                    <!-- Airalo -->
-                    <div class="affiliate-card">
-                        <i class="fas fa-sim-card"></i>
-                        <h4>Airalo eSIM</h4>
-                        <p>Affordable data worldwide. Use code <strong>NEWTOAIRALO15</strong> for 15% off.</p>
-                        <a href="https://www.airalo.com/?irclickid=xxSR0:xnvxyZTQdzdG2LayWDUku2Ouyx3z1QxY0&irgwc=1&afsrc=1&utm_source=impact&utm_medium=affiliate&utm_campaign=kevinandcat&code=NEWTOAIRALO15" class="affiliate-btn" target="_blank" rel="sponsored">Get eSIM</a>
-                    </div>
-                </div>
-
-                <!-- Expedia banner (separate) -->
-                <div class="expedia-banner">
-                    <p style="margin-bottom: 1rem;">✈️ We book our travel through Expedia — it helps support the channel (at no extra cost).</p>
-                    <a href="https://expedia.com/affiliates/kevinandcat/howtotravel" target="_blank" rel="sponsored noopener">
-                        <div class="eg-affiliate-banners" data-program="ca-expedia" data-network="pz" data-layout="medium-rectangle" data-image="city" data-message="start-travel-planning" data-camref="1011l5cdjt" data-pubref="" data-link="home"></div>
+        <!-- EXPEDIA AFFILIATE -->
+        <div class="affiliate-section">
+            <div class="section-title" style="margin-top: 0;"><i class="fas fa-plane"></i> Where We Book Our Travel</div>
+            <div class="affiliate-content" style="text-align: center;">
+                <p style="color: #ccc; max-width: 600px; margin: 0 auto 1.5rem;">We always find the best deals on Expedia. Book through our link to support our adventures (at no extra cost to you)!</p>
+                <a href="https://expedia.com/affiliates/kevinandcat/howtotravel" target="_blank" rel="sponsored noopener" style="display: inline-block;">
+                    <div class="eg-affiliate-banners" data-program="ca-expedia" data-network="pz" data-layout="medium-rectangle" data-image="city" data-message="start-travel-planning" data-camref="1011l5cdjt" data-pubref="" data-link="home"></div>
+                </a>
+                <div style="margin-top: 1rem;">
+                    <a href="https://expedia.com/affiliates/kevinandcat/howtotravel" class="affiliate-link" target="_blank" rel="sponsored noopener" style="color: #3ea6ff; text-decoration: none;">
+                        <i class="fas fa-external-link-alt"></i> expedia.com/affiliates/kevinandcat/howtotravel
                     </a>
-                    <div style="margin-top: 1rem;">
-                        <a href="https://expedia.com/affiliates/kevinandcat/howtotravel" style="color:#3ea6ff; text-decoration:none; font-size:0.9rem;">expedia.com/affiliates/kevinandcat/howtotravel</a>
-                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- RANDOMIZER (clean version) -->
+        <!-- OUR GEAR & ESSENTIALS -->
+        <div class="affiliate-section">
+            <div class="section-title" style="margin-top: 0;"><i class="fas fa-camera"></i> Our Gear & Travel Essentials</div>
+            <div class="affiliate-grid">
+                <div class="affiliate-item">
+                    <i class="fab fa-amazon"></i>
+                    <h4>Amazon Storefront</h4>
+                    <p>All the gear we use for travel & filming – cameras, accessories, and more.</p>
+                    <a href="https://www.amazon.ca/shop/kevinandcattravel?ccs_id=9c724870-028f-4ff9-9de9-be5b68b7f4f4" target="_blank" rel="sponsored noopener">Shop Now</a>
+                </div>
+                <div class="affiliate-item">
+                    <i class="fas fa-music" style="color: #1db954;"></i>
+                    <h4>Epidemic Sound</h4>
+                    <p>Royalty-free music for your videos. Get 30 days free with our link.</p>
+                    <a href="https://www.epidemicsound.com/campaign/invite-a-creator/?_us=Referral&_usx=353d15&utm_source=ref_program&utm_medium=referralprogram&utm_campaign=353d15" target="_blank" rel="sponsored noopener">Try Free</a>
+                </div>
+                <div class="affiliate-item">
+                    <i class="fas fa-sim-card"></i>
+                    <h4>Airalo eSIM</h4>
+                    <p>Affordable data packages worldwide. Use code NEWTOAIRALO15 for 15% off.</p>
+                    <a href="https://www.airalo.com/?irclickid=xxSR0:xnvxyZTQdzdG2LayWDUku2Ouyx3z1QxY0&irgwc=1&afsrc=1&utm_source=impact&utm_medium=affiliate&utm_campaign=kevinandcat&code=NEWTOAIRALO15" target="_blank" rel="sponsored noopener">Get eSIM</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- RANDOMIZER TOOL -->
         <div class="randomizer-section">
             <div class="randomizer-header">
-                <h3>🌎 Travel Trend Randomizer</h3>
-                <span class="trending-badge">2026 trending</span>
+                <h3>🌏 Travel Trend Randomizer 2026</h3>
+                <span class="trending-badge"><i class="fas fa-chart-line"></i> 2026 Trending Searches</span>
             </div>
-            <p style="color:#666; margin-bottom:1.5rem;">Click a destination to get fresh keyword ideas for your next video.</p>
-
+            <p style="color:#aaa; margin-bottom:1.5rem;">Click any destination to get fresh, high-volume search keywords. Use these for your next video titles!</p>
+            
             <div class="destination-panel" id="destinationPanel">
                 <button class="dest-btn" data-dest="japan"><i class="fas fa-torii-gate"></i> Japan</button>
                 <button class="dest-btn" data-dest="korea"><i class="fas fa-landmark"></i> Korea</button>
                 <button class="dest-btn" data-dest="thailand"><i class="fas fa-umbrella-beach"></i> Thailand</button>
                 <button class="dest-btn" data-dest="mexico"><i class="fas fa-sun"></i> Mexico</button>
                 <button class="dest-btn" data-dest="montreal"><i class="fas fa-city"></i> Montreal</button>
-                <button class="dest-btn" data-dest="quebec"><i class="fas fa-snowflake"></i> Quebec</button>
+                <button class="dest-btn" data-dest="quebec"><i class="fas fa-snowflake"></i> Quebec City</button>
             </div>
 
             <div class="randomizer-display" id="randomizerDisplay">
@@ -746,172 +586,309 @@
                     <i class="fab fa-youtube"></i> <span id="trendingKeyword">playa del carmen food guide 2026</span>
                 </div>
                 <div class="action-buttons">
-                    <button class="btn btn-primary" id="refreshKeyword"><i class="fas fa-sync-alt"></i> Refresh</button>
-                    <a href="#" id="searchYouTubeBtn" class="btn btn-youtube" target="_blank"><i class="fab fa-youtube"></i> Search YouTube</a>
-                    <a href="https://www.youtube.com/@KevinAndCatTravel" class="btn btn-secondary" target="_blank"><i class="fas fa-arrow-right"></i> Channel</a>
+                    <button class="btn btn-primary" id="refreshKeyword"><i class="fas fa-sync-alt"></i> Refresh Keyword</button>
+                    <a href="#" id="searchYouTubeBtn" class="btn btn-youtube" target="_blank"><i class="fab fa-youtube"></i> Search on YouTube</a>
+                    <a href="https://www.youtube.com/@KevinAndCatTravel" class="btn btn-secondary" target="_blank"><i class="fas fa-arrow-right"></i> Visit Our Channel</a>
                 </div>
                 <div class="search-tip">
-                    💡 Click refresh – use the keyword in your next title, then link back here.
+                    <i class="fas fa-lightbulb" style="color: #ffd700;"></i> <strong>Pro tip:</strong> Click refresh for new keyword ideas. When you find a trending topic, make a video about it and link back to our channel!
                 </div>
             </div>
         </div>
 
-        <!-- FOOTER -->
+        <!-- footer -->
         <div class="footer">
-            <p><a href="https://www.youtube.com/@KevinAndCatTravel" target="_blank">Kevin And Cat Travel</a> · clean archive · all playlists</p>
-            <p style="margin-top:0.5rem;">© 2026</p>
+            <p><a href="https://www.youtube.com/@KevinAndCatTravel" target="_blank">Kevin And Cat Travel</a> • Food & Travel Adventures • Subscribe for more!</p>
+            <p style="margin-top: 1rem; font-size: 0.8rem;">© 2026 Kevin And Cat Travel. All playlists featured – Thailand is now live!</p>
         </div>
     </div>
 
-    <!-- Expedia script -->
+    <!-- Expedia Affiliate Script -->
     <script class="eg-affiliate-banners-script" src="https://creator.expediagroup.com/products/banners/assets/eg-affiliate-banners.js"></script>
 
     <script>
         // ==================== CONFIG ====================
-        const CHANNEL_ID = 'UCeRIQOqgsJ_YSufuDrYuIsg';
+        const CHANNEL_ID = 'UCeRIQOqgsJ_YSufuDrYuIsg';   // your channel ID
 
+        // ----- YOUR PLAYLISTS (including Thailand!) -----
         const PLAYLIST_SECTIONS = [
-            { id: 'food-reviews-videos', videos: [{ videoId: 'OL82W22IxjY', playlistId: 'PLJ4TvzrUQAnqIjiZ-e7kCSbBf2F5cHccR' }] },
-            { id: 'mexico-videos', videos: [{ videoId: 'pp_2XYQyqzo', playlistId: 'PLJ4TvzrUQAnrpgEWVQKyY1mMNCtc7klrc' }] },
-            { id: 'quebec-videos', videos: [{ videoId: '6uQ8mGf1T7I', playlistId: 'PLJ4TvzrUQAnrvmHoyIoDXeNh5jkY6XDLH' }] },
-            { id: 'korea-videos', videos: [{ videoId: 'HTc2jn79fPo', playlistId: 'PLJ4TvzrUQAnrzvp-7ky967hJ5EfhReDbL' }] },
-            { id: 'montreal-videos', videos: [{ videoId: 'JXcRqlr6dBY', playlistId: 'PLJ4TvzrUQAnr7jRKhi1DWR6A_FKc14fGO' }] },
-            { id: 'japan-videos', videos: [{ videoId: 'aNqgi3zd1SM', playlistId: 'PLJ4TvzrUQAnpoHeJzswY1P_txcXDxMMFh' }] },
-            { id: 'thailand-videos', videos: [{ videoId: 'NzFGto1r8WI', playlistId: 'PLJ4TvzrUQAnq_juB9gzE5sQ-TnQ7YUVi2' }] }
+            {
+                id: 'food-reviews-videos',
+                title: 'Food Reviews',
+                videos: [ { videoId: 'OL82W22IxjY', playlistId: 'PLJ4TvzrUQAnqIjiZ-e7kCSbBf2F5cHccR' } ]
+            },
+            {
+                id: 'mexico-videos',
+                title: 'Mexico / Playa del Carmen',
+                videos: [ { videoId: 'pp_2XYQyqzo', playlistId: 'PLJ4TvzrUQAnrpgEWVQKyY1mMNCtc7klrc' } ]
+            },
+            {
+                id: 'quebec-videos',
+                title: 'Quebec City Spa',
+                videos: [ { videoId: '6uQ8mGf1T7I', playlistId: 'PLJ4TvzrUQAnrvmHoyIoDXeNh5jkY6XDLH' } ]
+            },
+            {
+                id: 'korea-videos',
+                title: 'Korea',
+                videos: [ { videoId: 'HTc2jn79fPo', playlistId: 'PLJ4TvzrUQAnrzvp-7ky967hJ5EfhReDbL' } ]
+            },
+            {
+                id: 'montreal-videos',
+                title: 'Montreal',
+                videos: [ { videoId: 'JXcRqlr6dBY', playlistId: 'PLJ4TvzrUQAnr7jRKhi1DWR6A_FKc14fGO' } ]
+            },
+            {
+                id: 'japan-videos',
+                title: 'Japan',
+                videos: [ { videoId: 'aNqgi3zd1SM', playlistId: 'PLJ4TvzrUQAnpoHeJzswY1P_txcXDxMMFh' } ]
+            },
+            {
+                id: 'thailand-videos',                       // <-- THAILADDED!
+                title: 'Thailand',
+                videos: [ { videoId: 'NzFGto1r8WI', playlistId: 'PLJ4TvzrUQAnq_juB9gzE5sQ-TnQ7YUVi2' } ]
+            }
         ];
 
+        // keyword mapping for RSS categorization
         const DEST_KEYWORDS = {
-            thailand: ['thailand','bangkok','phuket','chiang mai','iconsiam'],
-            japan: ['japan','tokyo','osaka','kyoto','sushi','ramen'],
-            korea: ['korea','seoul','busan','korean','jeju'],
-            mexico: ['mexico','playa del carmen','cancun','tacos','riviera maya','el fogon','birria'],
-            quebec: ['quebec','montreal','quebec city','spa','old quebec','strom']
+            thailand: ['thailand', 'bangkok', 'phuket', 'chiang mai', 'iconsiam', 'thai'],
+            japan: ['japan', 'tokyo', 'osaka', 'kyoto', 'sushi', 'ramen', 'japanese'],
+            korea: ['korea', 'seoul', 'busan', 'korean', 'jeju', 'south korea'],
+            mexico: ['mexico', 'playa del carmen', 'cancun', 'tacos', 'riviera maya', 'mexican', 'el fogon', 'birria'],
+            quebec: ['quebec', 'montreal', 'quebec city', 'spa', 'old quebec', 'montréal', 'poutine', 'strom']
         };
 
         const PROXY_URL = 'https://api.allorigins.win/raw?url=';
         const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
 
+        // ---------- helper: fetch video title via oembed ----------
         async function fetchVideoTitle(videoId) {
+            const oembedUrl = `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`;
             try {
-                const r = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`);
-                const d = await r.json();
-                return d.title || 'Untitled';
-            } catch { return 'Untitled'; }
-        }
-
-        async function renderAllPlaylists() {
-            for (const s of PLAYLIST_SECTIONS) {
-                const container = document.getElementById(s.id);
-                if (!container) continue;
-                let html = '';
-                for (const v of s.videos) {
-                    const title = await fetchVideoTitle(v.videoId);
-                    html += `<a href="https://www.youtube.com/watch?v=${v.videoId}&list=${v.playlistId}" class="video-card" target="_blank">
-                        <div class="thumbnail"><img src="https://img.youtube.com/vi/${v.videoId}/mqdefault.jpg" alt="" loading="lazy"><div class="play-overlay"><i class="fas fa-play"></i></div></div>
-                        <div class="card-details"><h4>${title} <span class="playlist-badge">playlist</span></h4><span class="views-count"><i class="fas fa-list"></i> full playlist</span></div>
-                    </a>`;
-                }
-                container.innerHTML = html;
+                const response = await fetch(oembedUrl);
+                const data = await response.json();
+                return data.title || 'Untitled';
+            } catch (error) {
+                console.error(`Failed to fetch title for ${videoId}:`, error);
+                return 'Untitled';
             }
         }
 
-        async function fetchRSS() {
+        // ---------- render all playlist sections (each gets one card) ----------
+        async function renderAllPlaylistSections() {
+            for (const section of PLAYLIST_SECTIONS) {
+                const container = document.getElementById(section.id);
+                if (!container) continue;
+
+                let html = '';
+                for (const video of section.videos) {
+                    const title = await fetchVideoTitle(video.videoId);
+                    html += `
+                        <a href="https://www.youtube.com/watch?v=${video.videoId}&list=${video.playlistId}" class="video-card" target="_blank">
+                            <div class="thumbnail">
+                                <img src="https://img.youtube.com/vi/${video.videoId}/mqdefault.jpg" alt="${title}" loading="lazy">
+                                <div class="play-overlay"><i class="fas fa-play"></i></div>
+                            </div>
+                            <div class="card-details">
+                                <h4>${title} <span class="playlist-badge">Playlist</span></h4>
+                                <span class="views-count"><i class="fas fa-list"></i> View full playlist</span>
+                            </div>
+                        </a>
+                    `;
+                }
+                container.innerHTML = html;   // playlist card(s)
+            }
+        }
+
+        // ---------- fetch RSS videos from channel ----------
+        async function fetchRSSVideos() {
             try {
-                const r = await fetch(PROXY_URL + encodeURIComponent(RSS_URL));
-                const xml = await r.text();
-                const doc = new DOMParser().parseFromString(xml, 'application/xml');
-                const entries = doc.querySelectorAll('entry');
+                const response = await fetch(PROXY_URL + encodeURIComponent(RSS_URL));
+                const xmlText = await response.text();
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(xmlText, 'application/xml');
+                const entries = xml.querySelectorAll('entry');
                 const videos = [];
-                entries.forEach(e => {
-                    const title = e.querySelector('title')?.textContent || '';
-                    if (title.match(/#shorts|shorts/i)) return;
-                    const vid = e.querySelector('yt\\:videoId')?.textContent || e.querySelector('videoId')?.textContent;
-                    if (!vid) return;
-                    videos.push({
-                        title, videoId: vid,
-                        published: e.querySelector('published')?.textContent,
-                        thumbnail: `https://img.youtube.com/vi/${vid}/mqdefault.jpg`
-                    });
+                entries.forEach(entry => {
+                    const title = entry.querySelector('title')?.textContent || 'Untitled';
+                    const videoId = entry.querySelector('yt\\:videoId')?.textContent || entry.querySelector('videoId')?.textContent;
+                    const published = entry.querySelector('published')?.textContent;
+                    
+                    if (title.match(/#shorts|shorts|#短剧/i)) return;
+                    
+                    if (videoId) {
+                        videos.push({
+                            title,
+                            videoId,
+                            published,
+                            thumbnail: `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`
+                        });
+                    }
                 });
                 return videos;
-            } catch { return []; }
+            } catch (error) {
+                console.error('Failed to fetch RSS videos:', error);
+                return [];
+            }
         }
 
-        function categorize(videos) {
-            const cats = { thailand: [], japan: [], korea: [], mexico: [], quebec: [], recent: [] };
-            videos.forEach(v => {
-                const t = v.title.toLowerCase();
+        // ---------- categorize videos by destination ----------
+        function categorizeVideos(videos) {
+            const categorized = {
+                thailand: [],
+                japan: [],
+                korea: [],
+                mexico: [],
+                quebec: [],
+                recent: []
+            };
+            
+            videos.forEach(video => {
+                const titleLower = video.title.toLowerCase();
                 let matched = false;
-                for (let [dest, kw] of Object.entries(DEST_KEYWORDS)) {
-                    if (kw.some(k => t.includes(k))) {
-                        cats[dest].push(v); matched = true; break;
+                
+                for (const [dest, keywords] of Object.entries(DEST_KEYWORDS)) {
+                    if (keywords.some(kw => titleLower.includes(kw))) {
+                        categorized[dest].push(video);
+                        matched = true;
+                        break;
                     }
                 }
-                if (!matched) cats.recent.push(v);
+                if (!matched) {
+                    categorized.recent.push(video);
+                }
             });
-            return cats;
+            
+            return categorized;
         }
 
-        function renderGrid(containerId, videos, limit=3) {
-            const c = document.getElementById(containerId);
-            if (!c) return;
-            if (!videos || !videos.length) { c.innerHTML = '<p style="color:#aaa;">No videos yet.</p>'; return; }
-            const shuffled = [...videos].sort(()=>0.5-Math.random());
+        // ---------- render a fresh grid (overwrites) ----------
+        function renderGrid(containerId, videos, limit = 6) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            if (!videos || videos.length === 0) {
+                container.innerHTML = '<p style="color:#777; grid-column:1/-1;">No videos yet. Check back soon!</p>';
+                return;
+            }
+            
+            const shuffled = [...videos].sort(() => 0.5 - Math.random());
             const selected = shuffled.slice(0, Math.min(limit, videos.length));
+            
             let html = '';
             selected.forEach(v => {
-                const date = v.published ? new Date(v.published).toLocaleDateString() : '';
-                html += `<a href="https://www.youtube.com/watch?v=${v.videoId}" class="video-card" target="_blank">
-                    <div class="thumbnail"><img src="${v.thumbnail}" alt="" loading="lazy"><div class="play-overlay"><i class="fas fa-play"></i></div></div>
-                    <div class="card-details"><h4>${v.title}</h4><span class="views-count"><i class="fas fa-calendar"></i> ${date}</span></div>
-                </a>`;
+                const date = v.published ? new Date(v.published).toLocaleDateString() : '2026';
+                html += `
+                    <a href="https://www.youtube.com/watch?v=${v.videoId}" class="video-card" target="_blank">
+                        <div class="thumbnail">
+                            <img src="${v.thumbnail}" alt="${v.title.replace(/"/g, '&quot;')}" loading="lazy">
+                            <div class="play-overlay"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="card-details">
+                            <h4>${v.title}</h4>
+                            <span class="views-count"><i class="fas fa-calendar"></i> ${date}</span>
+                        </div>
+                    </a>
+                `;
             });
-            c.innerHTML = html;
+            container.innerHTML = html;
         }
 
+        // ---------- append videos to existing grid (preserves playlist cards) ----------
+        function appendVideos(containerId, videos, maxToAdd = 3) {
+            const container = document.getElementById(containerId);
+            if (!container || !videos || videos.length === 0) return;
+
+            const shuffled = [...videos].sort(() => 0.5 - Math.random());
+            const toAdd = shuffled.slice(0, Math.min(maxToAdd, videos.length));
+
+            let appendHtml = '';
+            toAdd.forEach(v => {
+                const date = v.published ? new Date(v.published).toLocaleDateString() : '2026';
+                appendHtml += `
+                    <a href="https://www.youtube.com/watch?v=${v.videoId}" class="video-card" target="_blank">
+                        <div class="thumbnail">
+                            <img src="${v.thumbnail}" alt="${v.title.replace(/"/g, '&quot;')}" loading="lazy">
+                            <div class="play-overlay"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="card-details">
+                            <h4>${v.title}</h4>
+                            <span class="views-count"><i class="fas fa-calendar"></i> ${date}</span>
+                        </div>
+                    </a>
+                `;
+            });
+            container.insertAdjacentHTML('beforeend', appendHtml);
+        }
+
+        // ---------- main ----------
         (async function() {
-            await renderAllPlaylists();
-            const rss = await fetchRSS();
-            const cats = categorize(rss);
-            renderGrid('thailand-videos', cats.thailand, 3);
-            renderGrid('japan-videos', cats.japan, 3);
-            renderGrid('korea-videos', cats.korea, 3);
-            renderGrid('mexico-videos', [...cats.mexico, ...cats.recent].slice(0,3), 3);
-            renderGrid('quebec-videos', cats.quebec, 3);
-            renderGrid('recent-videos', cats.recent, 4);
+            // 1. render all playlist cards (including Thailand)
+            await renderAllPlaylistSections();
+
+            // 2. fetch & categorize RSS videos
+            const videos = await fetchRSSVideos();
+            const categorized = categorizeVideos(videos);
+
+            // 3. for destination sections, APPEND up to 3 fresh RSS videos after the playlist card
+            appendVideos('thailand-videos', categorized.thailand, 3);
+            appendVideos('japan-videos', categorized.japan, 3);
+            appendVideos('korea-videos', categorized.korea, 3);
+            appendVideos('mexico-videos', categorized.mexico, 3);
+            appendVideos('quebec-videos', categorized.quebec, 3);
+
+            // 4. for 'recent-videos' we show only RSS (no playlist card)
+            renderGrid('recent-videos', categorized.recent, 6);
         })();
 
-        // TABS
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-                btn.classList.add('active');
-                const tabId = btn.getAttribute('data-tab');
-                document.getElementById(`tab-${tabId}`).classList.add('active');
-            });
-        });
-
-        // RANDOMIZER (same as before, updated for 2026)
+        // ---------- RANDOMIZER (unchanged, works perfectly) ----------
         (function() {
-            const kw = {
-                japan: ["japan travel guide 2026","tokyo street food","osaka food guide","kyoto travel tips","japan hidden gems","japan cherry blossoms 2026","best sushi tokyo"],
-                korea: ["korea travel guide 2026","seoul travel vlog","korean street food","busan travel guide","jeju island travel","seoul night market","korean bbq guide"],
-                thailand: ["thailand travel guide 2026","bangkok street food","thailand itinerary","phuket travel vlog","chiang mai guide","thailand islands","thailand street food tour"],
-                mexico: ["playa del carmen food guide 2026","mexico travel guide","cancun travel tips","tacos in mexico","riviera maya travel","best tacos playa del carmen","el fogon tacos"],
-                montreal: ["montreal travel guide 2026","montreal food tour","old montreal attractions","montreal poutine guide","worst hotel montreal","montreal bagels"],
-                quebec: ["quebec city travel guide","old quebec hotels","quebec city spa","strom nordic spa","quebec winter travel","quebec city food tour"]
+            const keywordLibrary = {
+                japan: ["japan travel guide 2026", "japan itinerary 2 weeks", "japan food vlog", "tokyo street food", "osaka food guide", "kyoto travel tips", "japan hidden gems", "japan budget travel", "japan railway pass guide", "mount fuji travel", "japan cherry blossoms 2026", "best sushi tokyo"],
+                korea: ["korea travel guide 2026", "seoul travel vlog", "korean street food", "busan travel guide", "south korea itinerary", "seoul food market", "korea budget travel", "korea hidden gems", "jeju island travel", "korea winter travel", "seoul night market", "korean bbq guide"],
+                thailand: ["thailand travel guide 2026", "bangkok street food", "thailand itinerary", "phuket travel vlog", "chiang mai guide", "thailand islands", "thailand budget travel", "bangkok night market", "thailand street food tour", "koh samui travel", "thailand hidden gems", "thailand food vlog"],
+                mexico: ["playa del carmen food guide 2026", "mexico travel guide", "cancun travel tips", "tacos in mexico", "riviera maya travel", "playa del carmen nightlife", "best tacos playa del carmen", "mexico budget travel", "el fogon tacos", "birria de la 30", "playa del carmen 5th avenue"],
+                montreal: ["montreal travel guide 2026", "montreal food tour", "old montreal attractions", "montreal hotels", "montreal poutine guide", "montreal bagels", "montreal nightlife", "montreal winter travel", "montreal cheap hotels", "montreal hotel review", "worst hotel montreal"],
+                quebec: ["quebec city travel guide", "old quebec hotels", "quebec city spa", "strom nordic spa", "quebec winter travel", "quebec city things to do", "quebec city food tour", "quebec city itinerary", "quebec city old town", "quebec hotel review", "quebec city fairmont"]
             };
-            const btns = document.querySelectorAll('.dest-btn');
-            const span = document.getElementById('trendingKeyword');
-            const refresh = document.getElementById('refreshKeyword');
-            const search = document.getElementById('searchYouTubeBtn');
-            let current = 'mexico';
-            function rand(d) { let arr = kw[d] || kw.japan; return arr[Math.floor(Math.random()*arr.length)]; }
-            function update() { let k = rand(current); span.textContent = k; search.href = `https://www.youtube.com/results?search_query=${encodeURIComponent(k)}`; }
-            btns.forEach(b => { b.addEventListener('click', function() { btns.forEach(b=>b.classList.remove('active')); this.classList.add('active'); current = this.dataset.dest; update(); }); });
-            refresh.addEventListener('click', (e) => { e.preventDefault(); update(); });
-            document.querySelector('[data-dest="mexico"]').classList.add('active'); update();
+
+            const destButtons = document.querySelectorAll('.dest-btn');
+            const trendingSpan = document.getElementById('trendingKeyword');
+            const refreshBtn = document.getElementById('refreshKeyword');
+            const searchBtn = document.getElementById('searchYouTubeBtn');
+            let currentDest = 'mexico';
+
+            function getRandomKeyword(dest) {
+                const keywords = keywordLibrary[dest] || keywordLibrary.japan;
+                return keywords[Math.floor(Math.random() * keywords.length)];
+            }
+
+            function updateKeyword() {
+                const keyword = getRandomKeyword(currentDest);
+                trendingSpan.textContent = keyword;
+                searchBtn.href = `https://www.youtube.com/results?search_query=${encodeURIComponent(keyword)}`;
+            }
+
+            destButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    destButtons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentDest = this.getAttribute('data-dest');
+                    updateKeyword();
+                });
+            });
+
+            refreshBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                updateKeyword();
+            });
+
+            // set default active to mexico
+            document.querySelector('[data-dest="mexico"]').classList.add('active');
+            currentDest = 'mexico';
+            updateKeyword();
+            
+            setInterval(updateKeyword, 30000);
         })();
     </script>
 </body>
