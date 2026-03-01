@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kevin & Cat Travel – Montreal, Japan, Korea, Thailand & Mexico Food & Travel Guides (2026)r</title>
+    <title>Kevin & Cat Travel – Montreal, Japan, Korea, Thailand & Mexico Food & Travel Guides (2026)</title>
     <meta name="description" content="Travel and food vlogs from Kevin and Cat. Featuring Food Reviews, Playa del Carmen, Quebec Spa, Korea, Montreal, and Japan. Shop our gear and travel essentials.">
     <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff0000'%3E%3Cpath d='M10 9v6l5-3-5-3z'/%3E%3Cpath d='M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12z'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -635,7 +635,7 @@
             </div>
         </div>
 
-        <!-- NEW: Blog Section from Blogspot -->
+        <!-- NEW: Blog Section from Blogspot (auto‑updating) -->
         <div class="section-title"><i class="fas fa-blog" style="color: #f4b400;"></i> 📝 Latest from Our Blog</div>
         <div class="blog-grid" id="blog-posts"></div>
         <div class="blog-cta">
@@ -695,34 +695,6 @@
             }
         ];
 
-        // ----- BLOG POSTS (from your Blogspot) -----
-        const BLOG_POSTS = [
-            {
-                title: "The Top 10 Best Places to Eat in Playa del Carmen",
-                description: "Chez Waffles, Choripan, Mu Burgerhouse, Birria de la 30, Tropical Tacos and more – full guide with timestamps.",
-                url: "https://kevinandcattravel.blogspot.com/2025/09/the-top-10-best-places-to-eat-in-playa.html",
-                date: "Sep 2025"
-            },
-            {
-                title: "I Tried The McDonald's McVeggie Burger But is it Vegetarian?",
-                description: "Canada's new vegetarian burger – cooked in same fryer as fish? We review the McVeggie and Spicy Habanero.",
-                url: "https://kevinandcattravel.blogspot.com/2025/09/i-tried-mcdonalds-mcveggie-burger-but.html",
-                date: "Sep 2025"
-            },
-            {
-                title: "I Tried Another Worst Reviewed Buffet in Montreal",
-                description: "Buffet des Continents: 'where taste buds go to die'? We tried the $40 international buffet so you don't have to.",
-                url: "https://kevinandcattravel.blogspot.com/2025/09/i-tried-another-worst-reviewed-buffet.html",
-                date: "Sep 2025"
-            },
-            {
-                title: "A Day Trip Montreal Granby Zoo Guide! (Waterpark, Zoo, Amusement Park)",
-                description: "Complete guide to Zoo de Granby – wildlife, water park, and amusement park. Perfect family day trip from Montreal.",
-                url: "https://kevinandcattravel.blogspot.com/2025/09/a-day-trip-montreal-granby-zoo-guide.html",
-                date: "Sep 2025"
-            }
-        ];
-
         // keyword mapping for RSS categorization
         const DEST_KEYWORDS = {
             thailand: ['thailand', 'bangkok', 'phuket', 'chiang mai', 'iconsiam', 'thai'],
@@ -774,14 +746,84 @@
             }
         }
 
+        // ---------- fetch blog posts from Blogger RSS (auto-updating) ----------
+        async function fetchBlogPosts() {
+            const fallbackPosts = [
+                {
+                    title: "The Top 10 Best Places to Eat in Playa del Carmen",
+                    description: "Chez Waffles, Choripan, Mu Burgerhouse, Birria de la 30, Tropical Tacos and more – full guide with timestamps.",
+                    url: "https://kevinandcattravel.blogspot.com/2025/09/the-top-10-best-places-to-eat-in-playa.html",
+                    date: "Sep 2025"
+                },
+                {
+                    title: "I Tried The McDonald's McVeggie Burger But is it Vegetarian?",
+                    description: "Canada's new vegetarian burger – cooked in same fryer as fish? We review the McVeggie and Spicy Habanero.",
+                    url: "https://kevinandcattravel.blogspot.com/2025/09/i-tried-mcdonalds-mcveggie-burger-but.html",
+                    date: "Sep 2025"
+                },
+                {
+                    title: "I Tried Another Worst Reviewed Buffet in Montreal",
+                    description: "Buffet des Continents: 'where taste buds go to die'? We tried the $40 international buffet so you don't have to.",
+                    url: "https://kevinandcattravel.blogspot.com/2025/09/i-tried-another-worst-reviewed-buffet.html",
+                    date: "Sep 2025"
+                },
+                {
+                    title: "A Day Trip Montreal Granby Zoo Guide! (Waterpark, Zoo, Amusement Park)",
+                    description: "Complete guide to Zoo de Granby – wildlife, water park, and amusement park. Perfect family day trip from Montreal.",
+                    url: "https://kevinandcattravel.blogspot.com/2025/09/a-day-trip-montreal-granby-zoo-guide.html",
+                    date: "Sep 2025"
+                }
+            ];
+
+            const feedUrl = 'https://kevinandcattravel.blogspot.com/feeds/posts/default?alt=rss';
+            try {
+                const response = await fetch(PROXY_URL + encodeURIComponent(feedUrl));
+                const xmlText = await response.text();
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(xmlText, 'application/xml');
+                const items = xml.querySelectorAll('item');
+                const posts = [];
+                items.forEach(item => {
+                    const title = item.querySelector('title')?.textContent || 'Untitled';
+                    const link = item.querySelector('link')?.textContent || '#';
+                    const description = item.querySelector('description')?.textContent || '';
+                    const pubDate = item.querySelector('pubDate')?.textContent || '';
+                    
+                    // Strip HTML tags from description and truncate
+                    const plainDesc = description.replace(/<[^>]*>/g, '').substring(0, 120) + '…';
+                    
+                    // Format date nicely
+                    let formattedDate = '';
+                    try {
+                        const d = new Date(pubDate);
+                        formattedDate = d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+                    } catch {
+                        formattedDate = 'Recent';
+                    }
+
+                    posts.push({
+                        title,
+                        url: link,
+                        description: plainDesc,
+                        date: formattedDate
+                    });
+                });
+                return posts.slice(0, 4); // show latest 4 posts
+            } catch (error) {
+                console.error('Failed to fetch blog posts, using fallback:', error);
+                return fallbackPosts; // fallback to static list
+            }
+        }
+
         // ---------- render blog posts ----------
-        function renderBlogPosts() {
+        async function renderBlogPosts() {
             const container = document.getElementById('blog-posts');
             if (!container) return;
 
+            const posts = await fetchBlogPosts();
+
             let html = '';
-            BLOG_POSTS.forEach(post => {
-                // generate a simple thumbnail using a random food/travel icon (since we don't have images)
+            posts.forEach(post => {
                 html += `
                     <a href="${post.url}" class="blog-card" target="_blank">
                         <div class="thumbnail" style="background: #2a2a2a; display: flex; align-items: center; justify-content: center;">
@@ -952,8 +994,8 @@
 
         // ---------- main ----------
         (async function() {
-            // 1. render blog posts
-            renderBlogPosts();
+            // 1. render blog posts (auto-updated)
+            await renderBlogPosts();
 
             // 2. render all playlist cards (including Thailand)
             await renderAllPlaylistSections();
