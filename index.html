@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kevin & Cat Travel • 2026 • Featured Videos</title>
-    <meta name="description" content="Latest travel vlogs from Kevin and Cat. Featuring Playa del Carmen, Quebec Spa, and more.">
+    <title>Kevin & Cat Travel • 2026 • All Playlists + Gear</title>
+    <meta name="description" content="Travel and food vlogs from Kevin and Cat. Featuring Food Reviews, Playa del Carmen, Quebec Spa, Korea, Montreal, and Japan. Shop our gear and travel essentials.">
     <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff0000'%3E%3Cpath d='M10 9v6l5-3-5-3z'/%3E%3Cpath d='M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12z'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* All existing styles – unchanged */
+        /* All existing CSS – unchanged */
         * {
             margin: 0;
             padding: 0;
@@ -222,36 +222,74 @@
             color: #aaa;
             font-size: 0.85rem;
         }
-        /* Affiliate section */
+        .playlist-badge {
+            display: inline-block;
+            background: #3ea6ff;
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 30px;
+            margin-left: 8px;
+        }
+        /* Affiliate sections */
         .affiliate-section {
             background: #1a1a1a;
             border-radius: 24px;
             padding: 2rem;
             margin: 3rem 0;
             border: 1px solid #333;
-            text-align: center;
         }
-        .affiliate-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .affiliate-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
+            margin-top: 1.5rem;
         }
-        .affiliate-link {
+        .affiliate-item {
+            background: #272727;
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid #3f3f3f;
+            transition: transform 0.2s;
+        }
+        .affiliate-item:hover {
+            transform: translateY(-4px);
+            border-color: #3ea6ff;
+        }
+        .affiliate-item i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #ff9900; /* Amazon orange */
+        }
+        .affiliate-item .fa-music {
+            color: #1db954; /* Spotify green */
+        }
+        .affiliate-item .fa-sim-card {
             color: #3ea6ff;
+        }
+        .affiliate-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .affiliate-item p {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .affiliate-item a {
+            display: inline-block;
+            background: #3ea6ff;
+            color: white;
             text-decoration: none;
-            font-size: 1.2rem;
-            word-break: break-all;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: background 0.2s;
         }
-        .affiliate-link:hover {
-            text-decoration: underline;
+        .affiliate-item a:hover {
+            background: #65b8ff;
         }
-        .affiliate-banner {
-            max-width: 100%;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        /* Randomizer */
         .randomizer-section {
             background: #1a1a1a;
             border-radius: 24px;
@@ -439,48 +477,81 @@
             </div>
         </div>
 
-        <!-- NEW: Featured Videos Section (your 14 links) -->
-        <div class="section-title"><i class="fas fa-star" style="color: #ffd700;"></i> 🔥 Featured Videos</div>
-        <div class="video-grid" id="featured-videos"></div>
+        <!-- ALL SECTIONS FILLED WITH YOUR PLAYLIST VIDEOS -->
 
-        <!-- Dynamic destination sections (will be filled by RSS) -->
-        <div id="thailand-section" class="destination-section">
-            <div class="section-title"><i class="fas fa-umbrella-beach"></i> Thailand</div>
-            <div class="video-grid" id="thailand-videos"></div>
-        </div>
-        <div id="japan-section" class="destination-section">
-            <div class="section-title"><i class="fas fa-torii-gate"></i> Japan</div>
-            <div class="video-grid" id="japan-videos"></div>
-        </div>
-        <div id="korea-section" class="destination-section">
-            <div class="section-title"><i class="fas fa-landmark"></i> Korea</div>
-            <div class="video-grid" id="korea-videos"></div>
-        </div>
-        <div id="mexico-section" class="destination-section">
-            <div class="section-title"><i class="fas fa-sun"></i> Mexico / Playa del Carmen</div>
-            <div class="video-grid" id="mexico-videos"></div>
-        </div>
-        <div id="quebec-section" class="destination-section">
-            <div class="section-title"><i class="fas fa-snowflake"></i> Quebec City Spa</div>
-            <div class="video-grid" id="quebec-videos"></div>
-        </div>
-        <div id="recent-section" class="destination-section">
-            <div class="section-title"><i class="fas fa-clock"></i> Latest Adventures</div>
-            <div class="video-grid" id="recent-videos"></div>
-        </div>
+        <!-- 1. FOOD REVIEWS SECTION -->
+        <div class="section-title"><i class="fas fa-utensils" style="color: #ff9900;"></i> 🍔 Food Reviews <span class="playlist-badge">Full Playlist</span></div>
+        <div class="video-grid" id="food-reviews-videos"></div>
 
-        <!-- Affiliate Section -->
+        <!-- 2. MEXICO / PLAYA DEL CARMEN SECTION -->
+        <div class="section-title"><i class="fas fa-sun"></i> Mexico / Playa del Carmen <span class="playlist-badge">Full Playlist</span></div>
+        <div class="video-grid" id="mexico-videos"></div>
+
+        <!-- 3. QUEBEC CITY SPA SECTION -->
+        <div class="section-title"><i class="fas fa-snowflake"></i> Quebec City Spa <span class="playlist-badge">Full Playlist</span></div>
+        <div class="video-grid" id="quebec-videos"></div>
+
+        <!-- 4. KOREA SECTION -->
+        <div class="section-title"><i class="fas fa-landmark"></i> Korea <span class="playlist-badge">Full Playlist</span></div>
+        <div class="video-grid" id="korea-videos"></div>
+
+        <!-- 5. MONTREAL SECTION -->
+        <div class="section-title"><i class="fas fa-city"></i> Montreal Adventures <span class="playlist-badge">Full Playlist</span></div>
+        <div class="video-grid" id="montreal-videos"></div>
+
+        <!-- 6. JAPAN SECTION – UPDATED VIDEO -->
+        <div class="section-title"><i class="fas fa-torii-gate"></i> Japan <span class="playlist-badge">Full Playlist</span></div>
+        <div class="video-grid" id="japan-videos"></div>
+
+        <!-- 7. THAILAND SECTION (RSS) -->
+        <div class="section-title"><i class="fas fa-umbrella-beach"></i> Thailand</div>
+        <div class="video-grid" id="thailand-videos"></div>
+
+        <!-- 8. Recent Videos (RSS) -->
+        <div class="section-title"><i class="fas fa-clock"></i> Latest Adventures</div>
+        <div class="video-grid" id="recent-videos"></div>
+
+        <!-- EXPEDIA AFFILIATE SECTION (Original) -->
         <div class="affiliate-section">
             <div class="section-title" style="margin-top: 0;"><i class="fas fa-plane"></i> Where We Book Our Travel</div>
-            <div class="affiliate-content">
-                <p style="color: #ccc; max-width: 600px;">We always find the best deals on Expedia. Book through our link to support our adventures (at no extra cost to you)!</p>
-                <a href="https://expedia.com/affiliates/kevinandcat/howtotravel" target="_blank" rel="sponsored noopener" style="display: block;">
+            <div class="affiliate-content" style="text-align: center;">
+                <p style="color: #ccc; max-width: 600px; margin: 0 auto 1.5rem;">We always find the best deals on Expedia. Book through our link to support our adventures (at no extra cost to you)!</p>
+                <a href="https://expedia.com/affiliates/kevinandcat/howtotravel" target="_blank" rel="sponsored noopener" style="display: inline-block;">
                     <div class="eg-affiliate-banners" data-program="ca-expedia" data-network="pz" data-layout="medium-rectangle" data-image="city" data-message="start-travel-planning" data-camref="1011l5cdjt" data-pubref="" data-link="home"></div>
                 </a>
-                <a href="https://expedia.com/affiliates/kevinandcat/howtotravel" class="affiliate-link" target="_blank" rel="sponsored noopener">
-                    <i class="fas fa-external-link-alt"></i> expedia.com/affiliates/kevinandcat/howtotravel
-                </a>
-                <p style="color: #888; font-size: 0.9rem;">(Affiliate link – we may earn a commission)</p>
+                <div style="margin-top: 1rem;">
+                    <a href="https://expedia.com/affiliates/kevinandcat/howtotravel" class="affiliate-link" target="_blank" rel="sponsored noopener" style="color: #3ea6ff; text-decoration: none;">
+                        <i class="fas fa-external-link-alt"></i> expedia.com/affiliates/kevinandcat/howtotravel
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- NEW: OUR GEAR & ESSENTIALS SECTION (Amazon, Epidemic Sound, Airalo) -->
+        <div class="affiliate-section">
+            <div class="section-title" style="margin-top: 0;"><i class="fas fa-camera"></i> Our Gear & Travel Essentials</div>
+            <div class="affiliate-grid">
+                <!-- Amazon Storefront -->
+                <div class="affiliate-item">
+                    <i class="fab fa-amazon"></i>
+                    <h4>Amazon Storefront</h4>
+                    <p>All the gear we use for travel & filming – cameras, accessories, and more.</p>
+                    <a href="https://www.amazon.ca/shop/kevinandcattravel?ccs_id=9c724870-028f-4ff9-9de9-be5b68b7f4f4" target="_blank" rel="sponsored noopener">Shop Now</a>
+                </div>
+                <!-- Epidemic Sound -->
+                <div class="affiliate-item">
+                    <i class="fas fa-music" style="color: #1db954;"></i>
+                    <h4>Epidemic Sound</h4>
+                    <p>Royalty-free music for your videos. Get 30 days free with our link.</p>
+                    <a href="https://www.epidemicsound.com/campaign/invite-a-creator/?_us=Referral&_usx=353d15&utm_source=ref_program&utm_medium=referralprogram&utm_campaign=353d15" target="_blank" rel="sponsored noopener">Try Free</a>
+                </div>
+                <!-- Airalo eSIM -->
+                <div class="affiliate-item">
+                    <i class="fas fa-sim-card"></i>
+                    <h4>Airalo eSIM</h4>
+                    <p>Affordable data packages worldwide. Use code NEWTOAIRALO15 for 15% off.</p>
+                    <a href="https://www.airalo.com/?irclickid=xxSR0:xnvxyZTQdzdG2LayWDUku2Ouyx3z1QxY0&irgwc=1&afsrc=1&utm_source=impact&utm_medium=affiliate&utm_campaign=kevinandcat&code=NEWTOAIRALO15" target="_blank" rel="sponsored noopener">Get eSIM</a>
+                </div>
             </div>
         </div>
 
@@ -519,7 +590,7 @@
         <!-- Footer -->
         <div class="footer">
             <p><a href="https://www.youtube.com/@KevinAndCatTravel" target="_blank">Kevin And Cat Travel</a> • Food & Travel Adventures • Subscribe for more!</p>
-            <p style="margin-top: 1rem; font-size: 0.8rem;">© 2026 Kevin And Cat Travel. Featuring your 14 selected videos.</p>
+            <p style="margin-top: 1rem; font-size: 0.8rem;">© 2026 Kevin And Cat Travel. All playlists featured – no empty sections.</p>
         </div>
     </div>
 
@@ -530,25 +601,53 @@
         // ==================== CONFIGURATION ====================
         const CHANNEL_ID = 'UCeRIQOqgsJ_YSufuDrYuIsg';   // Your channel ID
         
-        // List of video IDs you provided (extracted from your links)
-        const FEATURED_VIDEO_IDS = [
-            'jTBjF1Rsalo',
-            'mkgAm8nUQXc',
-            'mDeujsEwA3I',
-            'e_jVGb3l58A',
-            'xeODkIHUOzI',
-            'C-1zGLOKBt4',
-            'S6Qcugu1Va8',
-            '4OvpMe3jc1E',
-            'mSikKUf45h0',
-            '1KtmiFKD6QM',
-            'WPQwXEFDeKc',
-            'P7bvr0ifoHI',
-            'pp_2XYQyqzo', // Playa del Carmen
-            '5Xzd58x9eoM'
+        // ==================== YOUR PLAYLISTS – ORGANIZED BY CATEGORY ====================
+        const PLAYLIST_SECTIONS = [
+            {
+                id: 'food-reviews-videos',
+                title: 'Food Reviews',
+                videos: [
+                    { videoId: 'OL82W22IxjY', playlistId: 'PLJ4TvzrUQAnqIjiZ-e7kCSbBf2F5cHccR' }
+                ]
+            },
+            {
+                id: 'mexico-videos',
+                title: 'Mexico / Playa del Carmen',
+                videos: [
+                    { videoId: 'pp_2XYQyqzo', playlistId: 'PLJ4TvzrUQAnrpgEWVQKyY1mMNCtc7klrc' }
+                ]
+            },
+            {
+                id: 'quebec-videos',
+                title: 'Quebec City Spa',
+                videos: [
+                    { videoId: '6uQ8mGf1T7I', playlistId: 'PLJ4TvzrUQAnrvmHoyIoDXeNh5jkY6XDLH' }
+                ]
+            },
+            {
+                id: 'korea-videos',
+                title: 'Korea',
+                videos: [
+                    { videoId: 'HTc2jn79fPo', playlistId: 'PLJ4TvzrUQAnrzvp-7ky967hJ5EfhReDbL' }
+                ]
+            },
+            {
+                id: 'montreal-videos',
+                title: 'Montreal',
+                videos: [
+                    { videoId: 'JXcRqlr6dBY', playlistId: 'PLJ4TvzrUQAnr7jRKhi1DWR6A_FKc14fGO' }
+                ]
+            },
+            {
+                id: 'japan-videos',
+                title: 'Japan',
+                videos: [
+                    { videoId: 'aNqgi3zd1SM', playlistId: 'PLJ4TvzrUQAnpoHeJzswY1P_txcXDxMMFh' } // Updated video ID
+                ]
+            }
         ];
 
-        // Keywords for each destination (used by RSS)
+        // Keywords for RSS categorization
         const DEST_KEYWORDS = {
             thailand: ['thailand', 'bangkok', 'phuket', 'chiang mai', 'iconsiam', 'thai'],
             japan: ['japan', 'tokyo', 'osaka', 'kyoto', 'sushi', 'ramen', 'japanese'],
@@ -557,11 +656,10 @@
             quebec: ['quebec', 'montreal', 'quebec city', 'spa', 'old quebec', 'montréal', 'poutine', 'strom']
         };
 
-        // CORS proxy for RSS
         const PROXY_URL = 'https://api.allorigins.win/raw?url=';
         const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
 
-        // ==================== FETCH VIDEO TITLES via oEmbed (no API key) ====================
+        // ==================== FETCH VIDEO TITLES ====================
         async function fetchVideoTitle(videoId) {
             const oembedUrl = `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`;
             try {
@@ -574,34 +672,29 @@
             }
         }
 
-        // ==================== RENDER FEATURED VIDEOS ====================
-        async function renderFeaturedVideos() {
-            const container = document.getElementById('featured-videos');
-            if (!container) return;
+        // ==================== RENDER PLAYLIST SECTIONS ====================
+        async function renderAllPlaylistSections() {
+            for (const section of PLAYLIST_SECTIONS) {
+                const container = document.getElementById(section.id);
+                if (!container) continue;
 
-            // Create placeholder cards with loading state
-            let html = '';
-            FEATURED_VIDEO_IDS.forEach(id => {
-                html += `
-                    <a href="https://www.youtube.com/watch?v=${id}" class="video-card" target="_blank" data-video-id="${id}">
-                        <div class="thumbnail">
-                            <img src="https://img.youtube.com/vi/${id}/mqdefault.jpg" alt="Loading..." loading="lazy">
-                            <div class="play-overlay"><i class="fas fa-play"></i></div>
-                        </div>
-                        <div class="card-details">
-                            <h4>Loading title...</h4>
-                            <span class="views-count"><i class="fas fa-calendar"></i> 2026</span>
-                        </div>
-                    </a>
-                `;
-            });
-            container.innerHTML = html;
-
-            // Fetch titles one by one and update
-            for (const id of FEATURED_VIDEO_IDS) {
-                const title = await fetchVideoTitle(id);
-                const card = container.querySelector(`a[data-video-id="${id}"] .card-details h4`);
-                if (card) card.textContent = title;
+                let html = '';
+                for (const video of section.videos) {
+                    const title = await fetchVideoTitle(video.videoId);
+                    html += `
+                        <a href="https://www.youtube.com/watch?v=${video.videoId}&list=${video.playlistId}" class="video-card" target="_blank">
+                            <div class="thumbnail">
+                                <img src="https://img.youtube.com/vi/${video.videoId}/mqdefault.jpg" alt="${title}" loading="lazy">
+                                <div class="play-overlay"><i class="fas fa-play"></i></div>
+                            </div>
+                            <div class="card-details">
+                                <h4>${title} <span class="playlist-badge">Playlist</span></h4>
+                                <span class="views-count"><i class="fas fa-list"></i> View full playlist</span>
+                            </div>
+                        </a>
+                    `;
+                }
+                container.innerHTML = html;
             }
         }
 
@@ -619,10 +712,7 @@
                     const videoId = entry.querySelector('yt\\:videoId')?.textContent || entry.querySelector('videoId')?.textContent;
                     const published = entry.querySelector('published')?.textContent;
                     
-                    // Filter out shorts
-                    if (title.match(/#shorts|shorts|#短剧/i)) {
-                        return;
-                    }
+                    if (title.match(/#shorts|shorts|#短剧/i)) return;
                     
                     if (videoId) {
                         videos.push({
@@ -640,7 +730,7 @@
             }
         }
 
-        // ==================== CATEGORIZE VIDEOS ====================
+        // ==================== CATEGORIZE RSS VIDEOS ====================
         function categorizeVideos(videos) {
             const categorized = {
                 thailand: [],
@@ -670,16 +760,7 @@
             return categorized;
         }
 
-        // ==================== SHUFFLE ====================
-        function shuffleArray(arr) {
-            for (let i = arr.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [arr[i], arr[j]] = [arr[j], arr[i]];
-            }
-            return arr;
-        }
-
-        // ==================== RENDER GRID ====================
+        // ==================== RENDER RSS GRID ====================
         function renderGrid(containerId, videos, limit = 3) {
             const container = document.getElementById(containerId);
             if (!container) return;
@@ -689,18 +770,16 @@
                 return;
             }
             
-            const shuffled = shuffleArray([...videos]);
+            const shuffled = [...videos].sort(() => 0.5 - Math.random());
             const selected = shuffled.slice(0, Math.min(limit, videos.length));
             
             let html = '';
             selected.forEach(v => {
-                const thumb = v.thumbnail || `https://img.youtube.com/vi/${v.videoId}/mqdefault.jpg`;
                 const date = v.published ? new Date(v.published).toLocaleDateString() : '2026';
-                
                 html += `
                     <a href="https://www.youtube.com/watch?v=${v.videoId}" class="video-card" target="_blank">
                         <div class="thumbnail">
-                            <img src="${thumb}" alt="${v.title.replace(/"/g, '&quot;')}" loading="lazy">
+                            <img src="${v.thumbnail}" alt="${v.title.replace(/"/g, '&quot;')}" loading="lazy">
                             <div class="play-overlay"><i class="fas fa-play"></i></div>
                         </div>
                         <div class="card-details">
@@ -715,18 +794,16 @@
 
         // ==================== MAIN ====================
         (async function() {
-            // Render featured videos (your 14 links)
-            renderFeaturedVideos();
+            // First render all playlist sections (guaranteed content)
+            await renderAllPlaylistSections();
 
-            // Fetch and render RSS videos
+            // Then fetch and render RSS videos (supplemental)
             const videos = await fetchRSSVideos();
             const categorized = categorizeVideos(videos);
             
             renderGrid('thailand-videos', categorized.thailand, 3);
-            renderGrid('japan-videos', categorized.japan, 3);
-            renderGrid('korea-videos', categorized.korea, 3);
-            renderGrid('mexico-videos', categorized.mexico, 3);
-            renderGrid('quebec-videos', categorized.quebec, 3);
+            renderGrid('japan-videos', [...categorized.japan, ...categorized.recent].slice(0, 3), 3);
+            renderGrid('korea-videos', [...categorized.korea, ...categorized.recent].slice(0, 3), 3);
             renderGrid('recent-videos', categorized.recent, 6);
         })();
 
@@ -745,7 +822,7 @@
             const trendingSpan = document.getElementById('trendingKeyword');
             const refreshBtn = document.getElementById('refreshKeyword');
             const searchBtn = document.getElementById('searchYouTubeBtn');
-            let currentDest = 'mexico'; // Default to Mexico
+            let currentDest = 'mexico';
 
             function getRandomKeyword(dest) {
                 const keywords = keywordLibrary[dest] || keywordLibrary.japan;
@@ -772,7 +849,6 @@
                 updateKeyword();
             });
 
-            // Set Mexico as active initially
             document.querySelector('[data-dest="mexico"]').classList.add('active');
             document.querySelector('[data-dest="japan"]').classList.remove('active');
             currentDest = 'mexico';
