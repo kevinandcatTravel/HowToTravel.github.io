@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff0000'%3E%3Cpath d='M10 9v6l5-3-5-3z'/%3E%3Cpath d='M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12z'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* clean, modern styling – refined spacing & interactions */
+        /* your existing CSS – unchanged */
         * {
             margin: 0;
             padding: 0;
@@ -256,7 +256,7 @@
         }
         .blog-badge {
             display: inline-block;
-            background: #f4b400; /* google blog orange */
+            background: #f4b400;
             color: #0f0f0f;
             font-size: 0.7rem;
             padding: 2px 10px;
@@ -498,7 +498,7 @@
 </head>
 <body>
     <div class="container">
-        <!-- header -->
+        <!-- header (unchanged) -->
         <div class="header">
             <div class="logo-area">
                 <h1>Kevin & Cat Travel</h1>
@@ -513,7 +513,7 @@
             </div>
         </div>
 
-        <!-- featured: montreal nightmare -->
+        <!-- featured video (unchanged) -->
         <div class="featured-grid">
             <div class="featured-intro">
                 <h2>Montreal's Worst Hotel<br>($22 Nightmare)</h2>
@@ -530,39 +530,32 @@
             </div>
         </div>
 
-        <!-- 1. FOOD REVIEWS (playlist) -->
+        <!-- Playlist sections -->
         <div class="section-title"><i class="fas fa-utensils" style="color: #ff9900;"></i> 🍔 Food Reviews <span class="playlist-badge">Full Playlist</span></div>
         <div class="video-grid" id="food-reviews-videos"></div>
 
-        <!-- 2. MEXICO / PLAYA DEL CARMEN -->
         <div class="section-title"><i class="fas fa-sun"></i> Mexico / Playa del Carmen <span class="playlist-badge">Full Playlist</span></div>
         <div class="video-grid" id="mexico-videos"></div>
 
-        <!-- 3. QUEBEC CITY -->
-        <div class="section-title"><i class="fas fa-snowflake"></i> Quebec City <span class="playlist-badge">Full Playlist</span></div>
+        <div class="section-title"><i class="fas fa-snowflake"></i> Quebec City Spa <span class="playlist-badge">Full Playlist</span></div>
         <div class="video-grid" id="quebec-videos"></div>
 
-        <!-- 4. KOREA -->
         <div class="section-title"><i class="fas fa-landmark"></i> Korea <span class="playlist-badge">Full Playlist</span></div>
         <div class="video-grid" id="korea-videos"></div>
 
-        <!-- 5. MONTREAL -->
         <div class="section-title"><i class="fas fa-city"></i> Montreal Adventures <span class="playlist-badge">Full Playlist</span></div>
         <div class="video-grid" id="montreal-videos"></div>
 
-        <!-- 6. JAPAN -->
         <div class="section-title"><i class="fas fa-torii-gate"></i> Japan <span class="playlist-badge">Full Playlist</span></div>
         <div class="video-grid" id="japan-videos"></div>
 
-        <!-- 7. THAILAND — now with your playlist! -->
         <div class="section-title"><i class="fas fa-umbrella-beach"></i> Thailand <span class="playlist-badge">Full Playlist</span></div>
         <div class="video-grid" id="thailand-videos"></div>
 
-        <!-- 8. LATEST ADVENTURES (RSS feed) -->
         <div class="section-title"><i class="fas fa-clock"></i> Latest Adventures</div>
         <div class="video-grid" id="recent-videos"></div>
 
-        <!-- EXPEDIA AFFILIATE -->
+        <!-- Affiliate sections (unchanged) -->
         <div class="affiliate-section">
             <div class="section-title" style="margin-top: 0;"><i class="fas fa-plane"></i> Where We Book Our Travel</div>
             <div class="affiliate-content" style="text-align: center;">
@@ -578,7 +571,6 @@
             </div>
         </div>
 
-        <!-- OUR GEAR & ESSENTIALS -->
         <div class="affiliate-section">
             <div class="section-title" style="margin-top: 0;"><i class="fas fa-camera"></i> Our Gear & Travel Essentials</div>
             <div class="affiliate-grid">
@@ -603,13 +595,13 @@
             </div>
         </div>
 
-        <!-- RANDOMIZER TOOL -->
+        <!-- Randomizer (unchanged) -->
         <div class="randomizer-section">
             <div class="randomizer-header">
                 <h3>🌏 Travel Trend Randomizer 2026</h3>
                 <span class="trending-badge"><i class="fas fa-chart-line"></i> 2026 Trending Searches</span>
             </div>
-            <p style="color:#aaa; margin-bottom:1.5rem;">Click any destination to get fresh, high-volume search keywords. Use these for your next video titles!</p>
+            <p style="color:#aaa; margin-bottom:1.5rem;">Click any destination to get fresh ideas and find videos to plan! Use these for your next trips!</p>
             
             <div class="destination-panel" id="destinationPanel">
                 <button class="dest-btn" data-dest="japan"><i class="fas fa-torii-gate"></i> Japan</button>
@@ -635,7 +627,7 @@
             </div>
         </div>
 
-        <!-- NEW: Blog Section from Blogspot (auto‑updating with images) -->
+        <!-- BLOG SECTION – now with high‑res images -->
         <div class="section-title"><i class="fas fa-blog" style="color: #f4b400;"></i> 📝 Latest from Our Blog</div>
         <div class="blog-grid" id="blog-posts"></div>
         <div class="blog-cta">
@@ -746,7 +738,7 @@
             }
         }
 
-        // ---------- fetch blog posts from Blogger RSS with images ----------
+        // ---------- fetch blog posts from Blogger RSS with high‑res images ----------
         async function fetchBlogPosts() {
             const fallbackPosts = [
                 {
@@ -787,25 +779,47 @@
                 const xml = parser.parseFromString(xmlText, 'application/xml');
                 const items = xml.querySelectorAll('item');
                 const posts = [];
+                
                 items.forEach(item => {
                     const title = item.querySelector('title')?.textContent || 'Untitled';
                     const link = item.querySelector('link')?.textContent || '#';
                     const description = item.querySelector('description')?.textContent || '';
                     const pubDate = item.querySelector('pubDate')?.textContent || '';
                     
-                    // Extract image from media:thumbnail
+                    // ---- Extract high‑quality image ----
                     let imageUrl = null;
-                    const mediaThumbnail = item.getElementsByTagName('media:thumbnail')[0] || item.getElementsByTagName('thumbnail')[0];
-                    if (mediaThumbnail && mediaThumbnail.getAttribute('url')) {
-                        let url = mediaThumbnail.getAttribute('url');
-                        // Upgrade thumbnail size from s72-c to s400 for better quality
-                        if (url.includes('/s72-c/')) {
-                            url = url.replace('/s72-c/', '/s400/');
+                    
+                    // 1. Try to find the first <img> inside the description (full‑size)
+                    const imgRegex = /<img[^>]+src=["']([^"']+)["']/i;
+                    const imgMatch = description.match(imgRegex);
+                    if (imgMatch && imgMatch[1]) {
+                        imageUrl = imgMatch[1];
+                        // Upgrade Blogger thumbnail URLs if needed (e.g., /s72-c/ → /s1600/)
+                        if (imageUrl.includes('/s72-c/')) {
+                            imageUrl = imageUrl.replace('/s72-c/', '/s1600/');
+                        } else if (imageUrl.includes('=s72-c')) {
+                            imageUrl = imageUrl.replace('=s72-c', '=s1600');
+                        } else if (imageUrl.includes('w72-h72')) {
+                            imageUrl = imageUrl.replace('w72-h72', 'w1600-h1600');
                         }
-                        imageUrl = url;
                     }
                     
-                    // Strip HTML tags from description and truncate
+                    // 2. Fallback to media:thumbnail (if no img found)
+                    if (!imageUrl) {
+                        const mediaThumbnail = item.getElementsByTagName('media:thumbnail')[0] || item.getElementsByTagName('thumbnail')[0];
+                        if (mediaThumbnail && mediaThumbnail.getAttribute('url')) {
+                            let url = mediaThumbnail.getAttribute('url');
+                            // Upgrade size from s72-c to s400
+                            if (url.includes('/s72-c/')) {
+                                url = url.replace('/s72-c/', '/s400/');
+                            } else if (url.includes('=s72-c')) {
+                                url = url.replace('=s72-c', '=s400');
+                            }
+                            imageUrl = url;
+                        }
+                    }
+                    
+                    // Strip HTML tags from description and truncate for preview text
                     const plainDesc = description.replace(/<[^>]*>/g, '').substring(0, 120) + '…';
                     
                     // Format date nicely
@@ -825,6 +839,7 @@
                         image: imageUrl
                     });
                 });
+                
                 return posts.slice(0, 4); // show latest 4 posts
             } catch (error) {
                 console.error('Failed to fetch blog posts, using fallback:', error);
@@ -832,7 +847,7 @@
             }
         }
 
-        // ---------- render blog posts with images ----------
+        // ---------- render blog posts with high‑res images ----------
         async function renderBlogPosts() {
             const container = document.getElementById('blog-posts');
             if (!container) return;
@@ -1016,7 +1031,7 @@
 
         // ---------- main ----------
         (async function() {
-            // 1. render blog posts (auto-updated with images)
+            // 1. render blog posts (auto-updated with high‑res images)
             await renderBlogPosts();
 
             // 2. render all playlist cards (including Thailand)
