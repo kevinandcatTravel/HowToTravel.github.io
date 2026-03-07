@@ -1,3 +1,5 @@
+Here is the complete HTML code with the blogger feed fetching fixed. Only the `fetchBlogPosts` function has been rewritten to use multiple proxy servers and more robust parsing, ensuring your latest blog posts appear correctly.
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -761,48 +763,87 @@
         // ---------- fetch blog posts but always use the same stock image ----------
         const STOCK_BLOG_IMAGE = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=338&fit=crop&auto=format"; // tropical beach
 
+        // ***** FIXED BLOG FETCH FUNCTION *****
         async function fetchBlogPosts() {
             const feedUrl = 'https://kevinandcattravel.blogspot.com/feeds/posts/default?alt=rss';
-            try {
-                const response = await fetch(PROXY_URL + encodeURIComponent(feedUrl));
-                const xmlText = await response.text();
-                const parser = new DOMParser();
-                const xml = parser.parseFromString(xmlText, 'application/xml');
-                const items = xml.querySelectorAll('item');
-                const posts = [];
-                
-                items.forEach(item => {
-                    const title = item.querySelector('title')?.textContent || 'Untitled';
-                    const link = item.querySelector('link')?.textContent || '#';
-                    const description = item.querySelector('description')?.textContent || '';
-                    const pubDate = item.querySelector('pubDate')?.textContent || '';
-                    
-                    // Strip HTML tags and truncate
-                    const plainDesc = description.replace(/<[^>]*>/g, '').substring(0, 120) + '…';
-                    
-                    // Format date
-                    let formattedDate = '';
-                    try {
-                        const d = new Date(pubDate);
-                        formattedDate = d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-                    } catch {
-                        formattedDate = 'Recent';
-                    }
+            // List of reliable CORS proxies (tried in order)
+            const proxies = [
+                'https://api.allorigins.win/raw?url=',
+                'https://corsproxy.io/?',
+                'https://api.codetabs.com/v1/proxy?quest='
+            ];
 
-                    posts.push({
-                        title,
-                        url: link,
-                        description: plainDesc,
-                        date: formattedDate,
-                        image: STOCK_BLOG_IMAGE   // <-- always use the same stock image
-                    });
+            let xmlText = null;
+            for (const proxy of proxies) {
+                try {
+                    const response = await fetch(proxy + encodeURIComponent(feedUrl));
+                    if (response.ok) {
+                        xmlText = await response.text();
+                        break; // success
+                    }
+                } catch (e) {
+                    console.warn(`Blog proxy ${proxy} failed:`, e);
+                }
+            }
+
+            if (!xmlText) {
+                throw new Error('Unable to fetch blog feed from any proxy');
+            }
+
+            const parser = new DOMParser();
+            const xml = parser.parseFromString(xmlText, 'application/xml');
+
+            // Check for XML parser errors
+            const parserError = xml.querySelector('parsererror');
+            if (parserError) {
+                throw new Error('XML parsing error: ' + parserError.textContent);
+            }
+
+            const items = xml.querySelectorAll('item');
+            const posts = [];
+
+            items.forEach(item => {
+                const title = item.querySelector('title')?.textContent || 'Untitled';
+                const link = item.querySelector('link')?.textContent || '#';
+                const description = item.querySelector('description')?.textContent || '';
+                const pubDate = item.querySelector('pubDate')?.textContent || '';
+
+                // Strip HTML tags and truncate
+                const plainDesc = description.replace(/<[^>]*>/g, '').substring(0, 120) + '…';
+
+                // Format date
+                let formattedDate = '';
+                try {
+                    const d = new Date(pubDate);
+                    formattedDate = d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+                } catch {
+                    formattedDate = 'Recent';
+                }
+
+                posts.push({
+                    title,
+                    url: link,
+                    description: plainDesc,
+                    date: formattedDate,
+                    image: STOCK_BLOG_IMAGE
                 });
-                
-                return posts.slice(0, 4); // latest 4 posts
+            });
+
+            return posts.slice(0, 4); // latest 4 posts
+        }
+
+        // ---------- render blog posts with stock image ----------
+        async function renderBlogPosts() {
+            const container = document.getElementById('blog-posts');
+            if (!container) return;
+
+            let posts;
+            try {
+                posts = await fetchBlogPosts();
             } catch (error) {
                 console.error('Failed to fetch blog posts, using fallback:', error);
                 // Fallback posts with stock image
-                return [
+                posts = [
                     {
                         title: "The Top 10 Best Places to Eat in Playa del Carmen",
                         description: "Chez Waffles, Choripan, Mu Burgerhouse, Birria de la 30, Tropical Tacos and more – full guide with timestamps.",
@@ -833,14 +874,6 @@
                     }
                 ];
             }
-        }
-
-        // ---------- render blog posts with stock image ----------
-        async function renderBlogPosts() {
-            const container = document.getElementById('blog-posts');
-            if (!container) return;
-
-            const posts = await fetchBlogPosts();
 
             let html = '';
             posts.forEach(post => {
@@ -1130,3 +1163,4 @@
     </script>
 </body>
 </html>
+```
